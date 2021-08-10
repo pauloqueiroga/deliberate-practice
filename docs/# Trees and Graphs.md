@@ -11,18 +11,19 @@ public IList<int> PreorderTraversal(TreeNode root) {
         return result;
     }
     
-    var curr = root;
     var toProcess = new Stack<TreeNode>();
+    toProcess.Push(root);
     
-    while (curr != null || toProcess.Any()) {
-        while (curr != null) {
-            result.Add(curr.val);
-            toProcess.Push(curr.right);
-            curr = curr.left;
-        }
+    while (toProcess.Any()) {
+        var curr = toProcess.Pop();
+        result.Add(curr.val);
         
-        while (curr == null && toProcess.Any()) {
-            curr = toProcess.Pop();
+        if (curr.right != null) {
+            toProcess.Push(curr.right);
+        }
+
+        if (curr.left != null) {
+            toProcess.Push(curr.left);
         }
     }
     
@@ -96,3 +97,55 @@ private void InorderRecursive(TreeNode root) {
 ```
 
 ## Post-order Traversal
+### Iterative
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the processing stack **variable** grows to *n* elements in the worst case. The printing stack always grows to *n* elements. 
+```
+public IList<int> PostorderTraversal(TreeNode root) {
+    IList<int> result = new List<int>();
+
+    if (root == null) {
+        return result;
+    }
+
+    var toProcess = new Stack<TreeNode>();
+    var toPrint = new Stack<int>();
+    toProcess.Push(root);
+    
+    while (toProcess.Any()) {
+        var curr = toProcess.Pop();
+        toPrint.Push(curr.val);
+
+        if (curr.left != null) {
+            toProcess.Push(curr.left);
+        }
+        
+        if (curr.right != null) {
+            toProcess.Push(curr.right);
+        }
+    }
+    
+    while (toPrint.Any()) {
+        result.Add(toPrint.Pop());
+    }
+    
+    return result;
+}
+```
+
+### Recursive
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the **call stack** grows to *n* elements in the worst case.  
+```
+private IList<int> result = new List<int>();
+
+private void PostorderRecursive(TreeNode root) {
+    if (root == null) {
+        return;
+    }
+
+    PostorderRecursive(root.left);
+    PostorderRecursive(root.right);
+    result.Add(root.val);
+}
+```
