@@ -1,8 +1,8 @@
 # Trees and Graphs
 ## Pre-order Traversal
 ### Iterative
-Time Complexity is 
-Space Complexity is 
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the stack **variable** grows to *n* elements in the worst case.  
 ```
 public IList<int> PreorderTraversal(TreeNode root) {
     IList<int> result = new List<int>();
