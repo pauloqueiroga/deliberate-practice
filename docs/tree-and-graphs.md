@@ -1,4 +1,4 @@
-# Trees and Graphs
+# Binary Trees
 ## Pre-order Traversal
 ### Iterative
 Time Complexity is **O(*n*)**: each tree node is visited once.  
@@ -147,5 +147,60 @@ private void PostorderRecursive(TreeNode root) {
     PostorderRecursive(root.left);
     PostorderRecursive(root.right);
     result.Add(root.val);
+}
+```
+
+# N-Ary Trees
+## Pre-order Traversal
+### Iterative
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the stack **variable** grows to *n* elements in the worst case.  
+```
+public IList<int> Preorder(Node root) {
+    var result = new List<int>();
+    
+    if (root == null) {
+        return result;
+    }
+
+    var toProcess = new Stack<Node>();
+    toProcess.Push(root);
+    
+    while (toProcess.Any()) {
+        var curr = toProcess.Pop();
+        result.Add(curr.val);
+        
+        // go "right-to-left" through the children since we're stacking them
+        for (int i = curr.children.Count - 1; i >= 0; i--) {
+            if (curr.children[i] != null) {
+                toProcess.Push(curr.children[i]);
+            }
+        }
+    }
+    
+    return result;
+}
+```
+
+### Recursive
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the **call stack** grows to *n* elements in the worst case.  
+```
+public IList<int> Preorder(Node root) {
+    var result = new List<int>();
+    PreorderRecursive(root, result);
+    return result;
+}
+
+private void PreorderRecursive(Node root, IList<int> result) {
+    if (root == null) {
+        return;
+    }          
+    
+    result.Add(root.val);
+    
+    foreach (var sub in root.children) {
+        PreorderRecursive(sub, result);
+    }
 }
 ```
