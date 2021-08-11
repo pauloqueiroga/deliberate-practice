@@ -204,3 +204,61 @@ private void PreorderRecursive(Node root, IList<int> result) {
     }
 }
 ```
+
+## Post-order Traversal
+### Iterative
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the stack **variable** grows to *n* elements in the worst case.  
+```
+public IList<int> Postorder(Node root) {
+    IList<int> result = new List<int>();
+    
+    if (root == null) {
+        return result;
+    }
+    
+    var toProcess = new Stack<Node>();
+    var toPrint = new Stack<int>();
+    toProcess.Push(root);
+    
+    while (toProcess.Any()) {
+        var curr = toProcess.Pop();
+        toPrint.Push(curr.val);
+        
+        foreach (var child in curr.children) {
+            if (child != null) {
+                toProcess.Push(child);
+            }
+        }
+    }
+    
+    while (toPrint.Any()) {
+        result.Add(toPrint.Pop());
+    }
+    
+    return result;
+}
+```
+
+### Recursive
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the **call stack** grows to *n* elements in the worst case.  
+```
+public IList<int> Postorder(Node root) {
+    IList<int> result = new List<int>();
+    PostorderRecursive(root, result);
+    return result;
+}
+
+private void PostorderRecursive(Node root, IList<int> result) {
+    if (root == null) {
+        return;
+    }
+    
+    foreach (var child in root.children) {
+        PostorderRecursive(child, result);
+    }
+    
+    result.Add(root.val);
+}
+```
