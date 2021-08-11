@@ -48,7 +48,6 @@ private void PreorderRecursive(TreeNode root) {
 }
 ```
 
-
 ## In-order Traversal
 ### Iterative
 Time Complexity is **O(*n*)**: each tree node is visited once.  
@@ -218,7 +217,7 @@ public IList<int> Postorder(Node root) {
     }
     
     var toProcess = new Stack<Node>();
-    var toPrint = new Stack<int>();
+    var toPrint = new Stack<int>();  // more time&space efficient than Insert(0)!
     toProcess.Push(root);
     
     while (toProcess.Any()) {
@@ -260,5 +259,71 @@ private void PostorderRecursive(Node root, IList<int> result) {
     }
     
     result.Add(root.val);
+}
+```
+
+## Level-order Traversal
+### Iterative
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the stack **variable** grows to *n* elements in the worst case.  
+```
+public IList<IList<int>> LevelOrder(Node root) {
+    IList<IList<int>> result = new List<IList<int>>();
+    
+    if (root == null) {
+        return result;
+    }
+    
+    var toProcess = new Queue<Node>();
+    var level = 0;
+    toProcess.Enqueue(root);
+    
+    while (toProcess.Any()) {
+        var levelCount = toProcess.Count();
+        
+        if (result.Count == level) {
+            result.Add(new List<int>());
+        }
+        
+        for (int i = 0; i < levelCount; i++) {
+            var curr = toProcess.Dequeue();
+            result[level].Add(curr.val);
+            
+            foreach (var child in curr.children) {
+                toProcess.Enqueue(child);
+            }
+        }
+        
+        level++;
+    }
+    
+    return result;
+}
+```
+
+### Recursive
+Time Complexity is **O(*n*)**: each tree node is visited once.  
+Space Complexity is **O(*n*)**: the **call stack** grows to *n* elements in the worst case.  
+```
+public IList<IList<int>> LevelOrder(Node root) {
+    IList<IList<int>> result = new List<IList<int>>();
+    LevelOrderRecursive(root, result);
+    return result;
+}
+
+private void LevelOrderRecursive(Node root, IList<IList<int>> result, int level=0) {
+    if (root == null) {
+        return;
+    }
+    
+    if (result.Count == level) {
+        result.Add(new List<int>());
+    }
+    
+    result[level].Add(root.val);
+    
+    foreach (var child in root.children) {
+        LevelOrderRecursive(child, result, level + 1);
+    }
 }
 ```
