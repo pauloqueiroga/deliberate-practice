@@ -1,0 +1,12 @@
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\bin\Debug\net5.0\SetsSolutionEngine.deps.json
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\bin\Debug\net5.0\SetsSolutionEngine.dll
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\bin\Debug\net5.0\ref\SetsSolutionEngine.dll
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\bin\Debug\net5.0\SetsSolutionEngine.pdb
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.csproj.AssemblyReference.cache
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.AssemblyInfoInputs.cache
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.AssemblyInfo.cs
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.csproj.CoreCompileInputs.cache
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.dll
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\ref\SetsSolutionEngine.dll
+C:\git\deliberate-practice\csharp\SetsGameSolver\SetsSolutionEngine\obj\Debug\net5.0\SetsSolutionEngine.pdb
