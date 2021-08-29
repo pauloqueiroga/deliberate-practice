@@ -46,7 +46,7 @@ namespace pauloq.SetsSolutionEngine
 
                     if (card1.Equals(card2)) continue;
 
-                    foreach (var card3 in cards.Skip(j))
+                    foreach (var card3 in cards.Skip(i + j))
                     {
                         if (card1.Equals(card3) || card2.Equals(card3)) continue;
                         var set = new[] { card1, card2, card3 };

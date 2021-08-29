@@ -2,8 +2,8 @@
 {
     public enum Shapes
     {
-        Oval,
-        Diamond,
         Squiggle,
+        Diamond,
+        Oval,
     }
 }

@@ -7,20 +7,21 @@ namespace pauloq.SolveTodaysPuzzle
     {
         static void Main(string[] args)
         {
+            var translator = new WebSiteTranslator();
             var board = new Board(new[]
             {
-                new Card(Colors.Purple, Shapes.Diamond, Fills.Solid, Numbers.Triple),
-                new Card(Colors.Purple, Shapes.Diamond, Fills.Empty, Numbers.Triple),
-                new Card(Colors.Purple, Shapes.Diamond, Fills.Lines, Numbers.Double),
-                new Card(Colors.Green, Shapes.Oval, Fills.Empty, Numbers.Single),
-                new Card(Colors.Red, Shapes.Oval, Fills.Lines, Numbers.Triple),
-                new Card(Colors.Green, Shapes.Diamond, Fills.Lines, Numbers.Triple),
-                new Card(Colors.Green, Shapes.Diamond, Fills.Solid, Numbers.Triple),
-                new Card(Colors.Purple, Shapes.Squiggle, Fills.Lines, Numbers.Triple),
-                new Card(Colors.Green, Shapes.Squiggle, Fills.Empty, Numbers.Triple),
-                new Card(Colors.Purple, Shapes.Oval, Fills.Empty, Numbers.Triple),
-                new Card(Colors.Purple, Shapes.Oval, Fills.Empty, Numbers.Single),
-                new Card(Colors.Red, Shapes.Squiggle, Fills.Solid, Numbers.Triple),
+                translator.CardById(9),
+                translator.CardById(7),
+                translator.CardById(6),
+                translator.CardById(64),
+                translator.CardById(30),
+                translator.CardById(49),
+                translator.CardById(66),
+                translator.CardById(77),
+                translator.CardById(72),
+                translator.CardById(8),
+                translator.CardById(37),
+                translator.CardById(54),
             });
 
             var solver = new Solver(board);
