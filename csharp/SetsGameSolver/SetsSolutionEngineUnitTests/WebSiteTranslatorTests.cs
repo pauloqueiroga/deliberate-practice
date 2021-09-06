@@ -1,4 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace pauloq.SetsSolutionEngine.UnitTests
 {
@@ -6,6 +9,7 @@ namespace pauloq.SetsSolutionEngine.UnitTests
     public class WebSiteTranslatorTests
     {
         private readonly WebSiteTranslator translator = new WebSiteTranslator();
+
         [TestMethod]
         public void CardById7ReturnsGreenSquigglySolidSingle()
         {
@@ -74,6 +78,34 @@ namespace pauloq.SetsSolutionEngine.UnitTests
             Assert.AreEqual(Shapes.Oval, target.Shape);
             Assert.AreEqual(Fills.Lines, target.Fill);
             Assert.AreEqual(Numbers.Single, target.Number);
+        }
+
+        [TestMethod]
+        public void ParseCardsShouldReturnCorrect12Cards()
+        {
+            var sample = File.ReadAllText("SampleHTMLPuzzlePage1.html");
+            var target = new WebSiteTranslatorTester();
+            var cardIds = target.ParseCardsAccessor(sample).ToArray();
+            CollectionAssert.Contains(cardIds, 76);
+            CollectionAssert.Contains(cardIds, 44);
+            CollectionAssert.Contains(cardIds, 3);
+            CollectionAssert.Contains(cardIds, 62);
+            CollectionAssert.Contains(cardIds, 35);
+            CollectionAssert.Contains(cardIds, 45);
+            CollectionAssert.Contains(cardIds, 31);
+            CollectionAssert.Contains(cardIds, 12);
+            CollectionAssert.Contains(cardIds, 67);
+            CollectionAssert.Contains(cardIds, 13);
+            CollectionAssert.Contains(cardIds, 54);
+            CollectionAssert.Contains(cardIds, 17);
+        }
+    }
+
+    internal class WebSiteTranslatorTester : WebSiteTranslator
+    {
+        public IEnumerable<int> ParseCardsAccessor(string html)
+        {
+            return ParseCards(html);
         }
     }
 }

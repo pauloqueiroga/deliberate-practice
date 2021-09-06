@@ -1,0 +1,557 @@
+﻿
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie ie6 " lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 7]>    <html class="ie ie7 " lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 8]>    <html class="ie ie8 " lang="en" dir="ltr"> <![endif]-->
+<!--[if gt IE 8]> <!-->
+<html class=" boxed" lang="en" dir="ltr">
+ <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"b38b6bff97",applicationID:"18429856"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n){return function(){return o(t,[u.now()].concat(f(arguments)),e?null:this,n),e?void 0:this}}var o=t("handle"),a=t(8),f=t(9),c=t("ee").get("tracer"),u=t("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(t,e){s[e]=i(p+e,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),e.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(l+"tracer",[u.now(),t,n],r),function(){if(c.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],n),t}finally{c.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(l+e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){function r(){return f.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,f=t(10);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],4:[function(t,e,n){function r(t){return!(!t||!t.protocol||"file:"===t.protocol)}e.exports=r},{}],5:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?d("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&d("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();n.length>0&&d("lcp",[n[n.length-1]])}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||d("cls",[t])})}function a(t){if(t instanceof m&&!g){var e=Math.round(t.timeStamp),n={type:t.type};e<=p.now()?n.fid=p.now()-e:e>p.offset&&e<=Date.now()?(e-=p.offset,n.fid=p.now()-e):e=p.now(),g=!0,d("timing",["fi",e,n])}}function f(t){"hidden"===t&&d("pageHide",[p.now()])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var c,u,s,d=t("handle"),p=t("loader"),l=t(7),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){c=new PerformanceObserver(r);try{c.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,h=["click","keydown","mousedown","pointerdown","touchstart"];h.forEach(function(t){document.addEventListener(t,a,!1)})}l(f)}},{}],6:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var f=navigator.userAgent,c=f.match(a);c&&f.indexOf("Chrome")===-1&&f.indexOf("Chromium")===-1&&(i="Safari",o=c[1])}e.exports={agent:i,version:o,match:r}},{}],7:[function(t,e,n){function r(t){function e(){t(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,e,!1)}e.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],8:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],9:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],10:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,c,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var f=e(i),c=v(n),u=c.length,s=0;s<u;s++)c[s].apply(f,r);var p=d[w[n]];return p&&p.push([b,n,r,f]),f}}function o(t,e){y[t]=v(t).concat(e)}function m(t,e){var n=y[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function v(t){return y[t]||[]}function g(t){return p[t]=p[t]||i(n)}function h(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var y={},w={},b={on:o,addEventListener:o,removeEventListener:m,emit:n,get:g,listeners:v,context:e,buffer:h,abort:f,aborted:!1};return b}function o(t){return u(t,c,a)}function a(){return new r}function f(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var c="nr@context",u=t("gos"),s=t(8),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!R++){var t=M.info=NREUM.info,e=v.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();c(E,function(e,n){t[e]||(t[e]=n)});var n=a();f("mark",["onload",n+M.offset],null,"api"),f("timing",["load",n]);var r=v.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=l+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===v.readyState&&o()}function o(){f("mark",["domContent",a()+M.offset],null,"api")}var a=t(3),f=t("handle"),c=t(8),u=t("ee"),s=t(6),d=t(4),p=t(2),l=p.getConfiguration("ssl")===!1?"http":"https",m=window,v=m.document,g="addEventListener",h="attachEvent",y=m.XMLHttpRequest,w=y&&y.prototype,b=!d(m.location);NREUM.o={ST:setTimeout,SI:m.setImmediate,CT:clearTimeout,XHR:y,REQ:m.Request,EV:m.Event,PR:m.Promise,MO:m.MutationObserver};var x=""+location,E={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1210.min.js"},O=y&&w&&w[g]&&!/CriOS/.test(navigator.userAgent),M=e.exports={offset:a.getLastTimestamp(),now:a,origin:x,features:{},xhrWrappable:O,userAgent:s,disabled:b};if(!b){t(1),t(5),v[g]?(v[g]("DOMContentLoaded",o,!1),m[g]("load",r,!1)):(v[h]("onreadystatechange",i),m[h]("onload",r)),f("mark",["firstbyte",a.getLastTimestamp()],null,"api");var R=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,c,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,c],s],t)}f(n+"start",[o,a,c],s,u);try{return p=e.apply(a,o)}catch(m){throw f(n+"err",[o,a,m],s,u),m}finally{f(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var f,c,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)c=e[u],f=t[c],a(f)||(t[c]=n(f,s?c+r:r,i,c,o))}function f(n,r,o,a){if(!m||e){var f=m;m=!0;try{t.emit(n,r,o,e,a)}catch(c){i([c,n,r,o],t)}m=f}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function f(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function c(t,e,n){var r=t[e];t[e]=f(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(9),p="nr@original",l=Object.prototype.hasOwnProperty,m=!1;e.exports=r,e.exports.wrapFunction=f,e.exports.wrapInPlace=c,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
+    <link rel="shortcut icon" href="https://www.setgame.com/sites/default/files/squiggle-icon.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        body {
+            background-color: #CCCCCC !important;
+        }
+    </style>
+    <meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
+    <link rel="canonical" href="https://www.setgame.com/set/puzzle" />
+    <link rel="shortlink" href="https://www.setgame.com/set/puzzle" />
+    <meta property="og:site_name" content="America&#039;s Favorite Card Games®" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.setgame.com/set/puzzle" />
+    <meta property="og:title" content="The Daily SET Puzzle" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://www.setgame.com/set/puzzle" />
+    <meta name="twitter:title" content="The Daily SET Puzzle" />
+    <meta name="google-site-verification" content="qhkgr5eXUS7PDMy038W-SHz8KSbV4gpCdFwzPDTJCto" />
+
+    <!-- Facebook Pixel Code -->
+    <script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '294289658079715');
+fbq('track', 'PageView');
+    </script>
+    <noscript><img height='1' width='1' style='display:none' src='https://www.facebook.com/tr?id=294289658079715&ev=PageView&noscript=1' /></noscript>
+    <!-- End Facebook Pixel Code -->
+    <title>The Daily SET Puzzle | America's Favorite Card Games®</title>
+    <!-- Call bootstrap.css before $scripts to resolve @import conflict with respond.js -->
+    <link rel="stylesheet" href="/sites/all/themes/Porto/vendor/bootstrap/css/bootstrap.min.css">
+
+
+    <link type="text/css" rel="stylesheet" href="https://www.setgame.com/sites/default/files/css/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://www.setgame.com/sites/default/files/css/css_q9z9_rFkEscuEs_UX9nlRZID4Bjlro37yNNo3xdn03A.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="https://www.setgame.com/sites/default/files/css/css_k6zrs2IeIuMWzSNnekTKqKYlSd79Y-f-X18yybTBOTg.css" media="all" />
+    <style type="text/css" media="all">
+        <!-- /*--><![CDATA[/*><!--*/
+        .tb-megamenu.animate .mega > .mega-dropdown-menu, .tb-megamenu.animate.slide .mega > .mega-dropdown-menu > div {
+            transition-delay: 200ms;
+            -webkit-transition-delay: 200ms;
+            -ms-transition-delay: 200ms;
+            -o-transition-delay: 200ms;
+            transition-duration: 400ms;
+            -webkit-transition-duration: 400ms;
+            -ms-transition-duration: 400ms;
+            -o-transition-duration: 400ms;
+        }
+
+        /*]]>*/ -->
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://www.setgame.com/sites/default/files/css/css_qpg_CeLljrkTVCN_CHauO0WgMwqMeY08AfFlSBcqZ5E.css" media="all" />
+    <style type="text/css" media="all">
+        <!-- /*--><![CDATA[/*><!--*/
+        #sliding-popup.sliding-popup-bottom, #sliding-popup.sliding-popup-bottom .eu-cookie-withdraw-banner, .eu-cookie-withdraw-tab {
+            background: #bd0707;
+        }
+
+            #sliding-popup.sliding-popup-bottom.eu-cookie-withdraw-wrapper {
+                background: transparent
+            }
+
+        #sliding-popup .popup-content #popup-text h1, #sliding-popup .popup-content #popup-text h2, #sliding-popup .popup-content #popup-text h3, #sliding-popup .popup-content #popup-text p, .eu-cookie-compliance-secondary-button, .eu-cookie-withdraw-tab {
+            color: #fff !important;
+        }
+
+        .eu-cookie-withdraw-tab {
+            border-color: #fff;
+        }
+
+        .eu-cookie-compliance-more-button {
+            color: #fff !important;
+        }
+
+        /*]]>*/ -->
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://www.setgame.com/sites/default/files/css/css_ws07CNGbno3BODl2xJcKD3nSH0WiamEgtXkvw-De_C4.css" media="all" />
+    <script type="text/javascript" src="https://www.setgame.com/sites/all/libraries/respondjs/respond.min.js?qrve1w"></script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_2hoh0v0y6B2TInaEIHI3XwA7E31uiNqpq69BJ97pODY.js"></script>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.migrateMute=true;jQuery.migrateTrace=false;
+//--><!]]>
+    </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+window.jQuery && window.jQuery.migrateWarnings || document.write("<script src='/sites/all/modules/jquery_update/replace/jquery-migrate/1/jquery-migrate.min.js'>\x3C/script>")
+//--><!]]>
+    </script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_38VWQ3jjQx0wRFj7gkntZr077GgJoGn5nv3v05IeLLo.js"></script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_xbwD5MwewVLaKHJmVydkPJHGumpr9P3Doyt5U2Y7xzw.js"></script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_Tik8PIaz_eQ5I4FMzmjkWoPEs9jKBgTSauo1jgsNa6g.js"></script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_nZZ8N5OgtvVjqL597Ju7F37KbD7gKiQOeKFHLh_pShU.js"></script>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.setgame.com/sites/default/files/googleanalytics/analytics.js?qrve1w","ga");ga("create", "UA-4384385-1", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");
+//--><!]]>
+    </script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_ohRUxe9C0Hx78dcXPViLrrlr-YVRo0n777ihzpNayk4.js"></script>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+//***********************************************************************/
+	/**
+	 * This is executed when the player has found all six sets.
+	 * Although it will return a string of resulting page location, this
+	 * is not how the page is loaded. it is loaded though a call to window.location;
+	 *
+	 * @return a String of the linking page.(i believe this is necessary.
+	 **/
+	function gameOver() {
+	  //var URL = "http://www.setgame.com/you_completed_todays_puzzle?time=" + board.getElapsedTime();
+	  //window.top.location = URL;
+	  (function ($) {
+			$("#gameover-submit_time").val(board.getElapsedTime());
+			$("#gameover").submit();
+		})(jQuery);
+	}
+	//***********************************************************************/
+	function showScore(score) {
+	  if (document.card != null) {
+	    document.card.score.value = score;
+	  }
+	}
+	//***********************************************************************/
+	function show(page) {
+	  var page = open(page, "PuzzleFrame", "scrollbars=yes,resizable=yes,toolbar=no,width=620,height=250");
+	  page.focus();
+	}
+	//***********************************************************************/
+	function showTutorial() {
+	  var page = open("http://www.setgame.com/sites/default/files/tutorials/tutorial/SetTutorial.swf", "PuzzleFrame", "scrollbars=no,resizable=no,toolbar=no,width=604,height=404");
+	  page.focus();
+	}
+	//***********************************************************************/
+	function init() {
+	  try {
+	    window.document.setsFoundTab = window.document.getElementById("setsFoundTab");
+	    board = new SetBoard(gameOver, showScore, window.document.getElementById("setsFound"));
+	    board.initSets(1,2,3,1,5,8,1,7,10,2,8,9,3,4,7,8,10,12); board.initSetCards(76,44,3,62,35,45,31,12,67,13,54,17);
+	    //board.toggleSetsFound((Cookie_getCookieValue("ShowSetsFound") != "false"));
+	    board.toggleSetsFound(true);
+	    console.log('board', board);
+	  } catch (e) {
+	    var platform = "\n on browser " + window.clientInformation.appName;
+	    platform = platform + " version " + window.clientInformation.appVersion;
+	    platform = platform + " for " + window.clientInformation.platform;
+	    // console.log(e);
+	    alert("There is a technical problem with the Daily SET Puzzle.  We are aware of the error and are doing our best to fix it as quickly as possible. Thank you for your patience.");
+	  }
+	}
+	//***********************************************************************/
+	function setAltText(set) {
+	  if (set) {
+	    board.syncCardImageNumber();
+	    var i = board.imageOffset;
+	    document.images[i++].alt = "1 Purple Ovals Striped ";
+	    document.images[i++].alt = "2 Red Diamonds Solid s";
+	    document.images[i++].alt = "2 Red Diamonds Striped s";
+	    document.images[i++].alt = "2 Red Diamonds Empty s";
+	    document.images[i++].alt = "1 Purple Ovals Solid ";
+	    document.images[i++].alt = "1 Red Ovals Striped ";
+	    document.images[i++].alt = "1 Red Diamonds Empty ";
+	    document.images[i++].alt = "1 Green Ovals Empty ";
+	    document.images[i++].alt = "3 Purple Squiggles Empty s";
+	    document.images[i++].alt = "3 Red Ovals Solid s";
+	    document.images[i++].alt = "3 Purple Squiggles Striped s";
+	    document.images[i++].alt = "1 Red Squiggles Solid ";
+	  }
+	}
+//--><!]]>
+    </script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_s2tZmx8qJBGLKu9Zm8WVH5djtJPtqjgoPHI33ah8X_0.js"></script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_ueEgIV_K-HI8eJRsMchLT06R7DaMeV-bk-a3ULqjt0M.js"></script>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"porto","theme_token":"ov3EyV0jdVQSC7ny6eDB-aEhUoP6fq8jExcu7tUY3uk","jquery_version":"1.11","js":{"0":1,"1":1,"sites\/all\/themes\/Porto\/js\/theme.js":1,"sites\/all\/themes\/Porto\/js\/views\/view.home.js":1,"sites\/all\/themes\/Porto\/js\/theme.init.js":1,"sites\/all\/themes\/Porto\/js\/examples\/examples.portfolio.js":1,"sites\/all\/modules\/commerce_ajax_cart\/js\/commerce_ajax_cart.js":1,"sites\/all\/modules\/eu_cookie_compliance\/js\/eu_cookie_compliance.js":1,"sites\/all\/libraries\/respondjs\/respond.min.js":1,"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.11\/jquery.min.js":1,"2":1,"\/\/code.jquery.com\/jquery-migrate-1.4.1.min.js":1,"3":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/external\/jquery.cookie.js":1,"sites\/all\/modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.position.min.js":1,"sites\/all\/modules\/jquery_update\/js\/jquery_update.js":1,"sites\/all\/modules\/extlink\/extlink.js":1,"misc\/ajax.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox_load.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox_inline.js":1,"sites\/all\/modules\/tb_megamenu\/js\/tb-megamenu-frontend.js":1,"sites\/all\/modules\/tb_megamenu\/js\/tb-megamenu-touch.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"4":1,"sites\/all\/modules\/setgame_set\/assets\/js\/Cookie.js":1,"sites\/all\/modules\/setgame_set\/assets\/js\/ModelUtils.js":1,"sites\/all\/modules\/setgame_set\/assets\/js\/Set.js":1,"sites\/all\/modules\/setgame_set\/assets\/js\/SetBoard.js":1,"sites\/all\/modules\/setgame_set\/assets\/js\/SetCard.js":1,"5":1,"sites\/all\/modules\/setgame_set\/assets\/js\/init.js":1,"misc\/progress.js":1,"sites\/all\/modules\/colorbox_node\/colorbox_node.js":1,"sites\/all\/themes\/Porto\/vendor\/modernizr\/modernizr.min.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.appear\/jquery.appear.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.easing\/jquery.easing.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery-cookie\/jquery-cookie.js":1,"sites\/all\/themes\/Porto\/vendor\/bootstrap\/js\/bootstrap.min.js":1,"sites\/all\/themes\/Porto\/vendor\/common\/common.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.validation\/jquery.validation.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.stellar\/jquery.stellar.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.easy-pie-chart\/jquery.easy-pie-chart.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.gmap\/jquery.gmap.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.lazyload\/jquery.lazyload.js":1,"sites\/all\/themes\/Porto\/vendor\/isotope\/jquery.isotope.min.js":1,"sites\/all\/themes\/Porto\/vendor\/owl.carousel\/owl.carousel.js":1,"sites\/all\/themes\/Porto\/vendor\/jflickrfeed\/jflickrfeed.js":1,"sites\/all\/themes\/Porto\/vendor\/magnific-popup\/jquery.magnific-popup.js":1,"sites\/all\/themes\/Porto\/vendor\/vide\/vide.js":1,"sites\/all\/themes\/Porto\/vendor\/circle-flip-slideshow\/js\/jquery.flipshow.js":1,"sites\/all\/themes\/Porto\/js\/custom.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/colorbox_node\/colorbox_node.css":1,"sites\/all\/modules\/commerce_ajax_cart\/css\/commerce_ajax_cart.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/logintoboggan\/logintoboggan.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/extlink\/extlink.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/media\/modules\/media_wysiwyg\/css\/media_wysiwyg.base.css":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/panels\/css\/panels.css":1,"sites\/all\/modules\/tb_megamenu\/css\/bootstrap.css":1,"sites\/all\/modules\/tb_megamenu\/css\/base.css":1,"sites\/all\/modules\/tb_megamenu\/css\/default.css":1,"sites\/all\/modules\/tb_megamenu\/css\/compatibility.css":1,"0":1,"sites\/all\/modules\/eu_cookie_compliance\/css\/eu_cookie_compliance.css":1,"sites\/all\/modules\/setgame_set\/assets\/css\/styles.css":1,"1":1,"sites\/all\/themes\/Porto\/vendor\/owl.carousel\/assets\/owl.carousel.css":1,"sites\/all\/themes\/Porto\/vendor\/font-awesome\/css\/font-awesome-legacy.css":1,"sites\/all\/themes\/Porto\/vendor\/font-awesome\/css\/font-awesome.css":1,"sites\/all\/themes\/Porto\/vendor\/simple-line-icons\/css\/simple-line-icons.css":1,"sites\/all\/themes\/Porto\/vendor\/owl.carousel\/assets\/owl.theme.default.css":1,"sites\/all\/themes\/Porto\/vendor\/prettyPhoto\/css\/prettyPhoto.css":1,"sites\/all\/themes\/Porto\/vendor\/circle-flip-slideshow\/css\/component.css":1,"sites\/all\/themes\/Porto\/vendor\/magnific-popup\/magnific-popup.css":1,"sites\/all\/themes\/Porto\/vendor\/isotope\/jquery.isotope.css":1,"sites\/all\/themes\/Porto\/css\/theme.css":1,"sites\/all\/themes\/Porto\/css\/theme-elements.css":1,"sites\/all\/themes\/Porto\/css\/theme-animate.css":1,"sites\/all\/themes\/Porto\/css\/theme-blog.css":1,"sites\/all\/themes\/Porto\/css\/theme-shop.css":1,"sites\/all\/themes\/Porto\/css\/drupal-styles.css":1,"sites\/all\/themes\/Porto\/css\/custom.css":1,"sites\/all\/themes\/Porto\/css\/less\/skin.less":1}},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px"},"eu_cookie_compliance":{"popup_enabled":1,"popup_agreed_enabled":0,"popup_hide_agreed":0,"popup_clicking_confirmation":false,"popup_scrolling_confirmation":false,"popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class=\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\n\u003Cp\u003EBy clicking any link on this page you are giving your consent for us to set cookies.\u003C\/p\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button eu-cookie-compliance-more-button\u0022\u003EMore info\u003C\/button\u003E\n          \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button eu-cookie-compliance-secondary-button\u0022\u003EOK, I agree\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022decline-button eu-cookie-compliance-default-button\u0022 \u003EDecline\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","use_mobile_message":false,"mobile_popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class=\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n                    \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button eu-cookie-compliance-more-button\u0022\u003EMore info\u003C\/button\u003E\n          \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022agree-button eu-cookie-compliance-secondary-button\u0022\u003EOK, I agree\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022decline-button eu-cookie-compliance-default-button\u0022 \u003EDecline\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","mobile_breakpoint":"768","popup_html_agreed":"\u003Cdiv\u003E\n  \u003Cdiv class=\u0022popup-content agreed\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EThank you for accepting cookies\u003C\/h2\u003E\n\u003Cp\u003EYou can now hide this message or find out more about cookies.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022hide-popup-button eu-cookie-compliance-hide-button\u0022\u003EHide\u003C\/button\u003E\n              \u003Cbutton type=\u0022button\u0022 class=\u0022find-more-button eu-cookie-compliance-more-button-thank-you\u0022 \u003EMore info\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","popup_use_bare_css":false,"popup_height":"auto","popup_width":"100%","popup_delay":1000,"popup_link":"\/privacy-policy","popup_link_new_window":1,"popup_position":null,"popup_language":"en","store_consent":true,"better_support_for_screen_readers":0,"reload_page":0,"domain":"","popup_eu_only_js":0,"cookie_lifetime":"100","cookie_session":false,"disagree_do_not_show_popup":0,"method":"opt_in","whitelisted_cookies":"","withdraw_markup":"\u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-tab\u0022\u003EPrivacy settings\u003C\/button\u003E\n\u003Cdiv class=\u0022eu-cookie-withdraw-banner\u0022\u003E\n  \u003Cdiv class=\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\n\u003Cp\u003EYou have given your consent for us to set cookies.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-button\u0022\u003EWithdraw consent\u003C\/button\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","withdraw_enabled":false},"extlink":{"extTarget":"_blank","extClass":0,"extLabel":"(link is external)","extImgClass":0,"extIconPlacement":"append","extSubdomains":1,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":0,"extAlertText":"This link will take you to an external web site.","mailtoClass":"mailto","mailtoLabel":"(link sends e-mail)"},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackColorbox":1},"colorbox_node":{"width":"600px","height":"600px"},"commerce_ajax_cart":{"position":{"my":"left top","at":"left bottom","collision":""},"update_url":"\/cart\/ajax\/update","update_url_block":"\/cart\/ajax\/block","ajax_url":"\/cart\/ajax","text":"There is no product in your cart"}});
+//--><!]]>
+    </script>
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <!--[if IE]>
+      <link rel="stylesheet" href="/sites/all/themes/Porto/css/ie.css">
+    <![endif]-->
+    <!--[if lte IE 8]>
+      <script src="/sites/all/themes/Porto/vendor/respond.js"></script>
+    <![endif]-->
+    <!-- Web Fonts  -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext" type="text/css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+
+    <!-- User defined CSS -->
+    <style type='text/css'>
+        #edit-customer-profile-shipping-commerce-customer-address-und-0-thoroughfare,
+        #edit-customer-profile-shipping-commerce-customer-address-und-0-premise,
+        #edit-customer-profile-billing-commerce-customer-address-und-0-thoroughfare,
+        #edit-customer-profile-billing-commerce-customer-address-und-0-premise,
+        #edit-customer-profile-shipping-commerce-customer-address-und-0-name-line,
+        #edit-customer-profile-billing-commerce-customer-address-und-0-name-line,
+        #edit-customer-profile-billing-addressbook,
+        #edit-customer-profile-shipping-addressbook,
+        #edit_customer_profile_billing_commerce_customer_address_und_0_country_chosen,
+        #edit_customer_profile_shipping_commerce_customer_address_und_0_country_chosen,
+        #edit-account-login-mail,
+        #edit-commerce-coupon-coupon-code,
+        #edit-account-login-mail {
+            width: 327px;
+        }
+
+        #edit_customer_profile_shipping_commerce_customer_address_und_0_administrative_area_chosen,
+        #edit_customer_profile_billing_commerce_customer_address_und_0_administrative_area_chosen {
+            width: 70px;
+        }
+
+        #edit-customer-profile-shipping-commerce-customer-address-und-0-locality,
+        #edit-customer-profile-billing-commerce-customer-address-und-0-locality {
+            width: 200px;
+        }
+
+        #block-system-main .main-puzzle-blocks {
+            margin-bottom: 30px;
+        }
+
+        html.boxed .main {
+            overflow: visible;
+        }
+
+        #header .header-logo > a > img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #footer {
+            background: #FFFFFF;
+            padding-top: 5px;
+        }
+
+            #footer .footer-copyright {
+                background: #FFFFFF;
+                border-top: none;
+            }
+    </style><!-- End user defined CSS -->
+    <!-- BEGIN ROBLY WIDGET CODE
+    <script type='text/javascript'>
+      var _d_site = _d_site || 'e6336bd52e54bf60eb827719f0a12049';
+      (function(w, d, p, s, s2) {
+        w[p] = w[p] || function() { (w[p].q = w[p].q || []).push(arguments) };
+        s = d.createElement('script'); s.async = 1; s.src = '//s3.amazonaws.com/roblyimages/accounts/9601/forms/29864/signup_popup.js';
+        s2 = d.getElementsByTagName('script')[0]; s2.parentNode.insertBefore(s, s2);
+      })(window, document, 'Robly');
+    </script>
+      END ROBLY WIDGET CODE -->
+
+</head>
+<body class="html not-front not-logged-in no-sidebars page-set page-set-puzzle boxed" data-target="#header" data-spy="scroll" data-offset="100">
+
+    <div class="body">
+
+        <header id="header" class="header-no-border-bottom" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 245, "stickySetTop": "-220px", "stickyChangeLogo": false}'>
+            <div class="header-body">
+                <div class="header-container container">
+                    <div class="header-row">
+                        <div class="header-column">
+
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td class="social-media-icons">
+                                    </td>
+                                    <td class="header-login">
+                                        <a class="colorbox-node" href="/user/login?width=450&height=275">Login/Register</a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100%" border="0" colspan="2">
+                                        <div class="header-logo" align="center">
+                                            <a href="/" title="Home" rel="home" id="logo">
+                                                <img alt="Home" width="" height="125" data-sticky-width="82" data-sticky-height="40" data-sticky-top="33" src="https://www.setgame.com/sites/default/files/PM_SET_TopBanner.png">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <div id="name-and-slogan" class="hidden">
+
+                                <div id="site-name" class="hidden">
+                                    <a href="/" title="Home" rel="home"><span>America's Favorite Card Games®</span></a>
+                                </div>
+
+                                <div id="site-slogan" class="hidden">
+                                    Celebrating 25 Years
+                                </div>
+
+                            </div> <!-- /#name-and-slogan -->
+                        </div>
+                    </div>
+                </div>
+                <div class="header-container header-nav header-nav-bar">
+                    <div class="container">
+                        <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <table class="header-nav-main-table">
+                            <tr>
+                                <td>
+                                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+                                        <nav>
+                                            <ul class="nav nav-pills" id="mainNav">
+                                                <li class="tb-megamenu-item level-1 mega">
+                                                    <a href="https://www.playmonster.com/brands/set/" class="  ">
+
+                                                        Shop
+                                                    </a>
+                                                </li>
+
+                                                <li class="tb-megamenu-item level-1 mega dropdown active active-trail parent">
+                                                    <a href="/welcome" class=" dropdown-toggle active-trail">
+
+                                                        Play Online
+                                                    </a>
+                                                    <ul data-class="" data-width="250" style="width: 250px;" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
+                                                        <li data-class="" data-width="12" data-hidewcol="0" id="tb-megamenu-column-1" class="tb-megamenu-column megamenu-column-single  mega-col-nav">
+                                                            <ul class="tb-megamenu-subnav mega-nav level-1 items-3">
+                                                                <li class="tb-megamenu-item level-2 mega active active-trail">
+                                                                    <a href="/set/puzzle" class="  active-trail">
+
+                                                                        The Daily SET Puzzle
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="tb-megamenu-item level-2 mega">
+                                                                    <a href="/quiddler/puzzle" class="  ">
+
+                                                                        The Daily QUIDDLER Puzzle
+                                                                    </a>
+                                                                </li>
+
+                                                                <li class="tb-megamenu-item level-2 mega">
+                                                                    <a href="/karma/puzzle" class="  ">
+
+                                                                        The Daily KARMA Puzzle
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="tb-megamenu-item level-1 mega">
+                                                    <a href="/weekly-winners" class="  ">
+
+                                                        Weekly Winners
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="header-search hidden-xs">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- end header -->
+
+        <div role="main" class="main">
+            <!--breadcrumbs-->
+
+            <div id="content" class="content full">
+                <div class="container">
+                    <div class="row">
+
+
+                        <div class="col-md-12">
+
+
+                            <div class="region region-content">
+                                <div id="block-system-main" class="block block-system">
+
+
+                                    <div class="content">
+                                        <center class="set-game-wrapper">
+                                            <h1>Monday, September 6, 2021</h1>
+                                            <p>
+                                                If you don't see the correct date above, REFRESH your browser.
+                                                <br> The puzzle is updated daily at 12:00 am PST.
+                                            </p>
+
+                                            <div class="set-messages-container"><div class="set-messages"></div></div>
+                                            <form name="card" method="post">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="site-res-wrap" valign="top">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="set-card-td"><a href="javascript:board.cardClicked(1)" border="0"><img nopin="nopin" class="A1" src="/sites/all/modules/setgame_set/assets/images/new/76.png" name="card1"></a><p class="set-inputs"><input name="A1" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(2)" border="0"><img nopin="nopin" class="A2" src="/sites/all/modules/setgame_set/assets/images/new/44.png" name="card2"></a><p class="set-inputs"><input name="A2" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(3)" border="0"><img nopin="nopin" class="A3" src="/sites/all/modules/setgame_set/assets/images/new/3.png" name="card3"></a><p class="set-inputs"><input name="A3" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(4)" border="0"><img nopin="nopin" class="A4" src="/sites/all/modules/setgame_set/assets/images/new/62.png" name="card4"></a><p class="set-inputs"><input name="A4" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(5)" border="0"><img nopin="nopin" class="A5" src="/sites/all/modules/setgame_set/assets/images/new/35.png" name="card5"></a><p class="set-inputs"><input name="A5" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(6)" border="0"><img nopin="nopin" class="A6" src="/sites/all/modules/setgame_set/assets/images/new/45.png" name="card6"></a><p class="set-inputs"><input name="A6" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(7)" border="0"><img nopin="nopin" class="A7" src="/sites/all/modules/setgame_set/assets/images/new/31.png" name="card7"></a><p class="set-inputs"><input name="A7" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(8)" border="0"><img nopin="nopin" class="A8" src="/sites/all/modules/setgame_set/assets/images/new/12.png" name="card8"></a><p class="set-inputs"><input name="A8" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(9)" border="0"><img nopin="nopin" class="A9" src="/sites/all/modules/setgame_set/assets/images/new/67.png" name="card9"></a><p class="set-inputs"><input name="A9" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(10)" border="0"><img nopin="nopin" class="A10" src="/sites/all/modules/setgame_set/assets/images/new/13.png" name="card10"></a><p class="set-inputs"><input name="A10" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(11)" border="0"><img nopin="nopin" class="A11" src="/sites/all/modules/setgame_set/assets/images/new/54.png" name="card11"></a><p class="set-inputs"><input name="A11" type="checkbox" onclick="board.count()"></input></p></div><div class="set-card-td"><a href="javascript:board.cardClicked(12)" border="0"><img nopin="nopin" class="A12" src="/sites/all/modules/setgame_set/assets/images/new/17.png" name="card12"></a><p class="set-inputs"><input name="A12" type="checkbox" onclick="board.count()"></input></p></div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="4" align="center" class="yesterdays-solution">
+                                                                                <a href="/set/puzzle/yesterday">Yesterday's Solution</a>&nbsp;<a href="/set/puzzle">Restart</a>
+                                                                                <a style="visibility: hidden; display: none;" href="javascript:void(0);" onclick="board.toggleSetsFound(true);">
+                                                                                    <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/sets_found_button.gif" border="0" name="setsFoundImage" style="visibility: hidden; display: none;">
+                                                                                    <input name="score" size="1" style="visibility: hidden; display: none;">
+
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                            <td class="site-res-wrap" id="setsFoundTab" valign="top" style="visibility: visible;">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td bgcolor="#eceeee" class=""><a href="javascript:void(0)" onclick="board.toggleSetsFound(false)"><img nopin="nopin" border="0" src="/sites/all/modules/setgame_set/assets/images/x_button.gif" align="right"></a><em>SETs</em> Found:<br /><font size="1">Hover to Enlarge</font></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td valign="top" id="setsFound">
+                                                                                <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1">
+                                                                                <br>
+                                                                                <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1">
+                                                                                <br>
+                                                                                <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1">
+                                                                                <br>
+                                                                                <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1">
+                                                                                <br>
+                                                                                <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1">
+                                                                                <br>
+                                                                                <img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1"><img nopin="nopin" src="/sites/all/modules/setgame_set/assets/images/new/empty_card.gif" width="32" height="21" border="1">
+                                                                                <br>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td valign="bottom" rowspan="2" height="100%">
+                                                                                <div class="set-learn-to-play"><font size="3"><b>Learn to Play</b></font><br><a class="colorbox-load" href="https://www.youtube.com/embed/3Eb42ZR2dqM?width=620&height=480&iframe=true"><img nopin="nopin" border="0" style="margin: 0px;padding: 0px;" src="/sites/default/files/SETplaytutorial.png" width="125px" height="auto"></a></div>
+                                                                                <div class="set-flash-tutorial"><a href="/set/puzzle_rules" target="_blank">SET Puzzle Rules</a></div>
+                                                                                <div class="set-flash-tutorial"><a target="_blank" href="/sites/default/files/tutorials/tutorial/SetTutorial.swf">Download our interactive flash tutorial</a></div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td class="set-footer" colspan="2"><div><a href="/quiddler/puzzle"><img class="other-game-images" src="/sites/default/files/Quiddler-Play-Now-button-6-30-15.png"></a><a href="/karma/puzzle"><img class="other-game-images" src="/sites/default/files/Karma-Play-Now-button-7-25-16.png"></a><br /><div class="set-flash-tutorial"><a target="_blank" href="http://www.nytimes.com/set">Play SET at The New York Times</a></div></div></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </form>
+                                        </center>
+                                        <form action="/you-completed-todays-puzzle" method="post" id="gameover">
+                                            <input type="hidden" name="submit_time" id="gameover-submit_time">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="region region-after-content">
+            <div id="block-block-81" class="block block-block">
+
+
+                <div class="content">
+                    <p><a name="SET" id="SET"></a></p>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer" class="">
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="region region-footer-bottom">
+                            <div id="block-block-106" class="block block-block">
+
+
+                                <div class="content">
+                                    <p style="text-align: center;"><span>FOR MORE INFORMATION, SEE</span></p>
+                                    <p style="text-align: center; margin-bottom:15px;"><a href="https://www.playmonster.com/policies/"><img alt="PM More Information" class="media-element file-default" data-delta="1" height="160" src="https://www.setgame.com/sites/default/files/PM_SET_Bottom-Banner.png" typeof="foaf:Image" width="600" /></a></p>
+                                    <div style="margin: 0 auto; width: 75px; height: 65px; margin-bottom:30px;">
+                                        <script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?style=invert&amp;code=ffbb5647c4844bc98468249e3104da46"></script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="block-block-6" class="block block-block">
+
+
+                                <div class="content">
+                                    <p style="text-align: center;"><span style="font-size: 13.0080003738403px; line-height: 1.538em;"><strong><a href="http://setgame.com/terms-and-conditions" target="_blank"><span style="color:#000000;">Terms and Conditions of Use</span></a></strong><span style="font-size: 13.0080003738403px; line-height: 1.538em;">.</span></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+
+    </div>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+function euCookieComplianceLoadScripts() {Drupal.attachBehaviors();}
+//--><!]]>
+    </script>
+    <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var eu_cookie_compliance_cookie_name = "";
+//--><!]]>
+    </script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_wVsHowK7pypCpuV2xQyUJ5-qC5NlcfH5Q4sWUZj23go.js"></script>
+    <script type="text/javascript" src="https://www.setgame.com/sites/default/files/js/js_2lJC5gTZ8B3-P19n2LPEd0viiCEmLJ5gcIAFYex1r0U.js"></script>
+
+    <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC7Pjsikj52mFixaUDjcMvd0pV3khU8qDo"></script> -->
+
+
+
+    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"b38b6bff97","applicationID":"18429856","transactionName":"ZVxSbUBXDUVVB0RZDFwWcVpGXwxYGxdVRARTVFVmQVMXaUQRSkoPV2ZAWFVT","queueTime":0,"applicationTime":109,"atts":"SRtRGwhNHks=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script>
+</body>
+
+</html>

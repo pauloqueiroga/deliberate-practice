@@ -8,22 +8,7 @@ namespace pauloq.SolveTodaysPuzzle
         static void Main(string[] args)
         {
             var translator = new WebSiteTranslator();
-            var board = new Board(new[]
-            {
-                translator.CardById(9),
-                translator.CardById(7),
-                translator.CardById(6),
-                translator.CardById(64),
-                translator.CardById(30),
-                translator.CardById(49),
-                translator.CardById(66),
-                translator.CardById(77),
-                translator.CardById(72),
-                translator.CardById(8),
-                translator.CardById(37),
-                translator.CardById(54),
-            });
-
+            var board = translator.FetchTodaysBoard();
             var solver = new Solver(board);
             var solution = solver.BruteForceSolve();
 
