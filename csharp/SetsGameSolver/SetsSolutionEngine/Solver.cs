@@ -56,9 +56,7 @@ namespace pauloq.SetsSolutionEngine
                             yield return set;
                         }
                     }
-
                 }
-    
             }
         }
     }
