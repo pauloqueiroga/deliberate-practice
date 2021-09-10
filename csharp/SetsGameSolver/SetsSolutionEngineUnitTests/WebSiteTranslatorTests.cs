@@ -83,7 +83,7 @@ namespace pauloq.SetsSolutionEngine.UnitTests
         [TestMethod]
         public void ParseCardsShouldReturnCorrect12Cards()
         {
-            var sample = File.ReadAllText("SampleHTMLPuzzlePage1.html");
+            var sample = File.ReadAllText("SampleHTMLPuzzlePage1.txt");
             var target = new WebSiteTranslatorTester();
             var cardIds = target.ParseCardsAccessor(sample).ToArray();
             CollectionAssert.Contains(cardIds, 76);
