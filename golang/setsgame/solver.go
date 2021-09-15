@@ -35,15 +35,7 @@ func BruteForceSolve(board *Board) [][]Card {
 		for _, card2 := range board.Cards[i:] {
 			j++
 
-			if card1 == card2 {
-				continue
-			}
-
 			for _, card3 := range board.Cards[j:] {
-				if (card1 == card3) || (card2 == card3) {
-					continue
-				}
-
 				set := []Card{card1, card2, card3}
 
 				if IsSet(set) {
