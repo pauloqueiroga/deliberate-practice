@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Set up Go
       uses: actions/setup-go@v2
@@ -25,10 +27,12 @@ jobs:
 
     - name: Test
       working-directory: ./golang/setsgame
-      run: go test -v ./...
+      run: go test -v ./... -coverprofile=coverage.out -json > test-report.out
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
+      with: 
+        projectBaseDir: ./golang/setsgame
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
