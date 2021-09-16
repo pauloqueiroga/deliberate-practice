@@ -25,7 +25,7 @@ jobs:
 
     - name: Test
       working-directory: ./golang/setsgame
-      run: go test -v ./...
+      run: go test -v ./... -coverprofile=coverage.out -json > test-report.out
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
