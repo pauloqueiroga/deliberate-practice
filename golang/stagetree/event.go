@@ -11,7 +11,7 @@ type event struct {
 type node struct {
 	id      string
 	company string
-	phase   string
+	stage   string
 	nodes   []*node
 	visited bool
 	weight  int

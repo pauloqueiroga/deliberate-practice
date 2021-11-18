@@ -139,11 +139,11 @@ func makeTree(events map[string]event) (*node, error) {
 	return root, nil
 }
 
-func newNode(id, company, phase string) *node {
+func newNode(id, company, stage string) *node {
 	return &node{
 		id:      id,
 		company: company,
-		phase:   phase,
+		stage:   stage,
 		nodes:   make([]*node, 0),
 		visited: false,
 	}
@@ -153,25 +153,25 @@ func (root *node) addChild(child *node) {
 	root.nodes = append(root.nodes, child)
 }
 
-func weighTree(root *node, currentPhase string, phaseDepth int) (string, int) {
+func weighTree(root *node, currentStage string, stageDepth int) (string, int) {
 	if root == nil {
 		return "", 0
 	}
 
 	weight := 1
 
-	if currentPhase == root.phase {
-		phaseDepth++
+	if currentStage == root.stage {
+		stageDepth++
 	} else {
-		phaseDepth = 1
+		stageDepth = 1
 	}
 
-	if maxDepth[root.phase] < phaseDepth {
-		maxDepth[root.phase] = phaseDepth
+	if maxDepth[root.stage] < stageDepth {
+		maxDepth[root.stage] = stageDepth
 	}
 
 	for _, n := range root.nodes {
-		o, w := weighTree(n, root.phase, phaseDepth)
+		o, w := weighTree(n, root.stage, stageDepth)
 		weight += w
 
 		if root.outcome == "" {
@@ -179,7 +179,7 @@ func weighTree(root *node, currentPhase string, phaseDepth int) (string, int) {
 		}
 	}
 
-	if root.phase == "outcome" {
+	if root.stage == "outcome" {
 		root.outcome = root.company
 	}
 

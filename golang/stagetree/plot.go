@@ -11,8 +11,8 @@ const (
 )
 
 var (
-	phaseColors  map[string]map[string]string = make(map[string]map[string]string)
-	phaseOffsets map[string]int               = make(map[string]int)
+	stageColors  map[string]map[string]string = make(map[string]map[string]string)
+	stageOffsets map[string]int               = make(map[string]int)
 )
 
 func getColorStyle(index int) map[string]string {
@@ -31,7 +31,7 @@ func getColorStyle(index int) map[string]string {
 	return styleColors[index%len(styleColors)]
 }
 
-func eventNodeStyle(phase string) style {
+func eventNodeStyle(stage string) style {
 	s := style{
 		Attributes: map[string]string{
 			"ellipse":               "",
@@ -44,11 +44,11 @@ func eventNodeStyle(phase string) style {
 		},
 	}
 
-	if _, ok := phaseColors[phase]; !ok {
-		phaseColors[phase] = getColorStyle(len(phaseColors))
+	if _, ok := stageColors[stage]; !ok {
+		stageColors[stage] = getColorStyle(len(stageColors))
 	}
 
-	for k, v := range phaseColors[phase] {
+	for k, v := range stageColors[stage] {
 		s.Attributes[k] = v
 	}
 
@@ -67,7 +67,7 @@ func linkStyle() style {
 	}
 }
 
-func stageHeaderStyle(phase string) style {
+func stageHeaderStyle(stage string) style {
 	s := style{
 		Attributes: map[string]string{
 			"html":       "1",
@@ -75,11 +75,11 @@ func stageHeaderStyle(phase string) style {
 		},
 	}
 
-	if _, ok := phaseColors[phase]; !ok {
-		phaseColors[phase] = getColorStyle(len(phaseColors))
+	if _, ok := stageColors[stage]; !ok {
+		stageColors[stage] = getColorStyle(len(stageColors))
 	}
 
-	for k, v := range phaseColors[phase] {
+	for k, v := range stageColors[stage] {
 		s.Attributes[k] = v
 	}
 
@@ -96,7 +96,7 @@ func plotStages(graph *graphModel, stageDepths map[string]int) error {
 	offset := 0
 
 	for _, k := range keys {
-		phaseOffsets[k] = offset + hSpacing/2 - 5
+		stageOffsets[k] = offset + hSpacing/2 - 5
 		width := hSpacing * stageDepths[k]
 		shape := cell{
 			ID:       k,
@@ -140,15 +140,15 @@ func addNodes(root *node, graph *graphModel, x, y int, parent string) (int, int)
 		value = ""
 	}
 
-	if x < phaseOffsets[root.phase] {
-		x = phaseOffsets[root.phase]
+	if x < stageOffsets[root.stage] {
+		x = stageOffsets[root.stage]
 	}
 
 	shape := cell{
 		ID:       root.id,
 		ParentID: "layer1",
 		Value:    value,
-		Style:    eventNodeStyle(root.phase),
+		Style:    eventNodeStyle(root.stage),
 		Vertex:   "1",
 		Geometry: &geometry{
 			X:      strconv.Itoa(x),
