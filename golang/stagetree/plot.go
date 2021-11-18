@@ -1,10 +1,18 @@
 package main
 
 import (
-	"encoding/xml"
-	"os"
+	"sort"
 	"strconv"
-	"strings"
+)
+
+const (
+	hSpacing = 80
+	vSpacing = 40
+)
+
+var (
+	phaseColors  map[string]map[string]string = make(map[string]map[string]string)
+	phaseOffsets map[string]int               = make(map[string]int)
 )
 
 func getColorStyle(index int) map[string]string {
@@ -23,8 +31,6 @@ func getColorStyle(index int) map[string]string {
 	return styleColors[index%len(styleColors)]
 }
 
-var phases map[string]int = make(map[string]int)
-
 func eventNodeStyle(phase string) style {
 	s := style{
 		Attributes: map[string]string{
@@ -38,11 +44,11 @@ func eventNodeStyle(phase string) style {
 		},
 	}
 
-	if _, ok := phases[phase]; !ok {
-		phases[phase] = len(phases)
+	if _, ok := phaseColors[phase]; !ok {
+		phaseColors[phase] = getColorStyle(len(phaseColors))
 	}
 
-	for k, v := range getColorStyle(phases[phase]) {
+	for k, v := range phaseColors[phase] {
 		s.Attributes[k] = v
 	}
 
@@ -61,20 +67,60 @@ func linkStyle() style {
 	}
 }
 
-func plotTree(root *node, filePath string, spacing int) error {
-	outputFile, err := os.Create(filePath)
-	if err != nil {
-		return err
+func stageHeaderStyle(phase string) style {
+	s := style{
+		Attributes: map[string]string{
+			"html":       "1",
+			"whiteSpace": "wrap",
+		},
 	}
-	defer outputFile.Close()
 
-	graph := newGraph()
-	addNodes(root, &graph, 10, 10, "")
-	rearrangeOutcomes(&graph, maxX)
-	encoder := xml.NewEncoder(outputFile)
-	encoder.Indent("", "\t")
-	encoder.Encode(graph)
+	if _, ok := phaseColors[phase]; !ok {
+		phaseColors[phase] = getColorStyle(len(phaseColors))
+	}
 
+	for k, v := range phaseColors[phase] {
+		s.Attributes[k] = v
+	}
+
+	return s
+}
+
+func plotStages(graph *graphModel, stageDepths map[string]int) error {
+	keys := make([]string, 0, len(stageDepths))
+	for k := range stageDepths {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	offset := 0
+
+	for _, k := range keys {
+		phaseOffsets[k] = offset + hSpacing/2 - 5
+		width := hSpacing * stageDepths[k]
+		shape := cell{
+			ID:       k,
+			Value:    k,
+			Style:    stageHeaderStyle(k),
+			ParentID: "layer1",
+			Vertex:   "1",
+			Geometry: &geometry{
+				X:      strconv.Itoa(offset),
+				Y:      "0",
+				Height: strconv.Itoa(vSpacing),
+				Width:  strconv.Itoa(width),
+				As:     "geometry",
+			},
+		}
+		graph.Root.Cells = append(graph.Root.Cells, shape)
+
+		offset += width
+	}
+	return nil
+}
+
+func plotTree(graph *graphModel, root *node) error {
+	addNodes(root, graph, hSpacing/2-5, vSpacing+5, "")
 	return nil
 }
 
@@ -94,8 +140,8 @@ func addNodes(root *node, graph *graphModel, x, y int, parent string) (int, int)
 		value = ""
 	}
 
-	if x > maxX {
-		maxX = x
+	if x < phaseOffsets[root.phase] {
+		x = phaseOffsets[root.phase]
 	}
 
 	shape := cell{
@@ -144,12 +190,4 @@ func addLink(graph *graphModel, sourceId, targetId string) {
 		},
 	}
 	graph.Root.Cells = append(graph.Root.Cells, link)
-}
-
-func rearrangeOutcomes(graph *graphModel, newX int) {
-	for _, n := range graph.Root.Cells {
-		if strings.HasPrefix(n.Value, "outcome") {
-			n.Geometry.X = strconv.Itoa(newX)
-		}
-	}
 }

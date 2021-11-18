@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"encoding/xml"
 	"errors"
 	"io"
 	"log"
@@ -9,14 +10,7 @@ import (
 	"sort"
 )
 
-const (
-	hSpacing = 80
-	vSpacing = 40
-)
-
-var (
-	maxX = 0
-)
+var maxDepth = make(map[string]int)
 
 func main() {
 	if len(os.Args) < 3 {
@@ -33,9 +27,27 @@ func main() {
 		log.Fatal(err)
 	}
 
-	weighTree(tree)
+	weighTree(tree, "", 0)
 
-	if err = plotTree(tree, os.Args[2], 10); err != nil {
+	graph := newGraph()
+
+	if err = plotStages(&graph, maxDepth); err != nil {
+		log.Fatal(err)
+	}
+
+	if err = plotTree(&graph, tree); err != nil {
+		log.Fatal(err)
+	}
+
+	outputFile, err := os.Create(os.Args[2])
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer outputFile.Close()
+
+	encoder := xml.NewEncoder(outputFile)
+	encoder.Indent("", "\t")
+	if err := encoder.Encode(graph); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -82,7 +94,7 @@ func readEvents(filePath string) (map[string]event, error) {
 			oid := row[0] + e.outcome
 			o := event{
 				source1:  row[0],
-				treeNode: newNode(oid, "outcome: "+e.outcome, e.outcome),
+				treeNode: newNode(oid, "outcome: "+e.outcome, "outcome"),
 			}
 			result[oid] = o
 		}
@@ -141,15 +153,25 @@ func (root *node) addChild(child *node) {
 	root.nodes = append(root.nodes, child)
 }
 
-func weighTree(root *node) (string, int) {
+func weighTree(root *node, currentPhase string, phaseDepth int) (string, int) {
 	if root == nil {
 		return "", 0
 	}
 
 	weight := 1
 
+	if currentPhase == root.phase {
+		phaseDepth++
+	} else {
+		phaseDepth = 1
+	}
+
+	if maxDepth[root.phase] < phaseDepth {
+		maxDepth[root.phase] = phaseDepth
+	}
+
 	for _, n := range root.nodes {
-		o, w := weighTree(n)
+		o, w := weighTree(n, root.phase, phaseDepth)
 		weight += w
 
 		if root.outcome == "" {
@@ -163,23 +185,23 @@ func weighTree(root *node) (string, int) {
 
 	root.weight = weight
 	sort.Slice(root.nodes, func(i, j int) bool {
-		if root.nodes[i].outcome < root.nodes[j].outcome {
+		if root.nodes[i].company < root.nodes[j].company {
 			return true
 		}
 
-		if root.nodes[i].outcome > root.nodes[j].outcome {
+		if root.nodes[i].company > root.nodes[j].company {
 			return false
-		}
-
-		if root.nodes[i].weight < root.nodes[j].weight {
-			return true
 		}
 
 		if root.nodes[i].weight > root.nodes[j].weight {
+			return true
+		}
+
+		if root.nodes[i].weight < root.nodes[j].weight {
 			return false
 		}
 
-		return root.nodes[i].company < root.nodes[j].company
+		return root.nodes[i].outcome < root.nodes[j].outcome
 	})
 
 	return root.outcome, weight
