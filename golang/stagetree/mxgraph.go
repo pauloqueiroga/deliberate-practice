@@ -61,32 +61,6 @@ func (a style) MarshalXMLAttr(name xml.Name) (xml.Attr, error) {
 	return xml.Attr{Name: xml.Name{Local: "style"}, Value: text}, nil
 }
 
-func eventNodeStyle() style {
-	return style{
-		Attributes: map[string]string{
-			"ellipse":               "",
-			"aspect":                "fixed",
-			"html":                  "1",
-			"labelPosition":         "center",
-			"verticalLabelPosition": "bottom",
-			"align":                 "center",
-			"verticalAlign":         "top",
-		},
-	}
-}
-
-func linkStyle() style {
-	return style{
-		Attributes: map[string]string{
-			"edgeStyle":      "entityRelationEdgeStyle",
-			"orthogonalLoop": "1",
-			"jettySize":      "auto",
-			"html":           "1",
-			"strokeWidth":    "1",
-		},
-	}
-}
-
 func newGraph() graphModel {
 	return graphModel{
 		Dx: "640",
@@ -100,19 +74,5 @@ func newGraph() graphModel {
 				},
 			},
 		},
-	}
-}
-
-func newShape() cell {
-	return cell{
-		Vertex: "1",
-		Edge:   "",
-	}
-}
-
-func newLink() cell {
-	return cell{
-		Vertex: "",
-		Edge:   "1",
 	}
 }

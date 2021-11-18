@@ -2,14 +2,11 @@ package main
 
 import (
 	"encoding/csv"
-	"encoding/xml"
 	"errors"
 	"io"
 	"log"
 	"os"
 	"sort"
-	"strconv"
-	"strings"
 )
 
 const (
@@ -81,10 +78,13 @@ func readEvents(filePath string) (map[string]event, error) {
 		}
 		result[row[0]] = e
 
-		if _, ok := result[e.outcome]; !ok && e.outcome != "" {
-			result[e.outcome] = event{
-				treeNode: newNode(e.outcome, "outcome: "+e.outcome, "outcome"),
+		if e.outcome != "" {
+			oid := row[0] + e.outcome
+			o := event{
+				source1:  row[0],
+				treeNode: newNode(oid, "outcome: "+e.outcome, e.outcome),
 			}
+			result[oid] = o
 		}
 	}
 
@@ -120,14 +120,6 @@ func makeTree(events map[string]event) (*node, error) {
 				source.treeNode.addChild(event.treeNode)
 			} else {
 				return root, errors.New("Source not found " + event.source3)
-			}
-		}
-
-		if event.outcome != "" {
-			if target, ok := events[event.outcome]; ok {
-				event.treeNode.addChild(target.treeNode)
-			} else {
-				return root, errors.New("Outcome not found " + event.outcome)
 			}
 		}
 	}
@@ -179,109 +171,16 @@ func weighTree(root *node) (string, int) {
 			return false
 		}
 
-		if root.nodes[i].company < root.nodes[j].company {
+		if root.nodes[i].weight < root.nodes[j].weight {
 			return true
 		}
 
-		if root.nodes[i].company > root.nodes[j].company {
+		if root.nodes[i].weight > root.nodes[j].weight {
 			return false
 		}
 
-		return root.nodes[i].weight < root.nodes[j].weight
+		return root.nodes[i].company < root.nodes[j].company
 	})
 
 	return root.outcome, weight
-}
-
-func plotTree(root *node, filePath string, spacing int) error {
-	outputFile, err := os.Create(filePath)
-	if err != nil {
-		return err
-	}
-	defer outputFile.Close()
-
-	graph := newGraph()
-	addNodes(root, &graph, 10, 10, "")
-	rearrangeOutcomes(&graph, maxX+hSpacing)
-	encoder := xml.NewEncoder(outputFile)
-	encoder.Indent("", "\t")
-	encoder.Encode(graph)
-
-	return nil
-}
-
-func addNodes(root *node, graph *graphModel, x, y int, parent string) (int, int) {
-	if root == nil {
-		return x, y
-	}
-
-	if root.visited {
-		return x, y
-	}
-
-	root.visited = true
-	value := root.company
-
-	if value == parent {
-		value = ""
-	}
-
-	if x > maxX {
-		maxX = x
-	}
-
-	shape := cell{
-		ID:       root.id,
-		ParentID: "layer1",
-		Value:    value,
-		Style:    eventNodeStyle(),
-		Vertex:   "1",
-		Geometry: &geometry{
-			X:      strconv.Itoa(x),
-			Y:      strconv.Itoa(y),
-			Width:  "10",
-			Height: "10",
-			As:     "geometry",
-		}}
-	graph.Root.Cells = append(graph.Root.Cells, shape)
-
-	x += hSpacing
-
-	for i, n := range root.nodes {
-		if i > 0 {
-			y += vSpacing
-		}
-		_, y = addNodes(n, graph, x, y, root.company)
-		addLink(graph, root.id, n.id)
-	}
-
-	return x, y
-}
-
-func addLink(graph *graphModel, sourceId, targetId string) {
-	if sourceId == "" || targetId == "" {
-		return
-	}
-
-	link := cell{
-		ID:       sourceId + "-" + targetId,
-		ParentID: "layer1",
-		Style:    linkStyle(),
-		Edge:     "1",
-		SourceID: sourceId,
-		TargetID: targetId,
-		Geometry: &geometry{
-			Relative: "1",
-			As:       "geometry",
-		},
-	}
-	graph.Root.Cells = append(graph.Root.Cells, link)
-}
-
-func rearrangeOutcomes(graph *graphModel, newX int) {
-	for _, n := range graph.Root.Cells {
-		if strings.HasPrefix(n.Value, "outcome") {
-			n.Geometry.X = strconv.Itoa(newX)
-		}
-	}
 }
