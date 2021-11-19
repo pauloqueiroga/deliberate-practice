@@ -6,7 +6,7 @@
         "request": "launch",
         "mode": "debug",
         "program": "${workspaceFolder}",
-        "args": ["local-only/job search 2021.csv", "local-only/justatest.drawio"]
+        "args": ["local-only/anonymized 2021.csv", "local-only/justatest.drawio"]
     }
     ]
 }

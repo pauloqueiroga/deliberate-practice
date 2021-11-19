@@ -8,6 +8,8 @@ import (
 	"log"
 	"os"
 	"sort"
+
+	"github.com/pauloqueiroga/godraw"
 )
 
 var maxDepth = make(map[string]int)
@@ -29,7 +31,7 @@ func main() {
 
 	weighTree(tree, "", 0)
 
-	graph := newGraph()
+	graph := godraw.NewGraph("layer1")
 
 	if err = plotStages(&graph, maxDepth); err != nil {
 		log.Fatal(err)

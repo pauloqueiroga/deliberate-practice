@@ -3,6 +3,8 @@ package main
 import (
 	"sort"
 	"strconv"
+
+	"github.com/pauloqueiroga/godraw"
 )
 
 const (
@@ -31,8 +33,8 @@ func getColorStyle(index int) map[string]string {
 	return styleColors[index%len(styleColors)]
 }
 
-func eventNodeStyle(stage string) style {
-	s := style{
+func eventNodeStyle(stage string) godraw.Style {
+	s := godraw.Style{
 		Attributes: map[string]string{
 			"ellipse":               "",
 			"aspect":                "fixed",
@@ -56,8 +58,8 @@ func eventNodeStyle(stage string) style {
 	return s
 }
 
-func linkStyle() style {
-	return style{
+func linkStyle() godraw.Style {
+	return godraw.Style{
 		Attributes: map[string]string{
 			"edgeStyle":      "entityRelationEdgeStyle",
 			"orthogonalLoop": "1",
@@ -68,8 +70,8 @@ func linkStyle() style {
 	}
 }
 
-func stageHeaderStyle(stage string) style {
-	s := style{
+func stageHeaderStyle(stage string) godraw.Style {
+	s := godraw.Style{
 		Attributes: map[string]string{
 			"html":       "1",
 			"whiteSpace": "wrap",
@@ -88,7 +90,7 @@ func stageHeaderStyle(stage string) style {
 	return s
 }
 
-func plotStages(graph *graphModel, stageDepths map[string]int) error {
+func plotStages(graph *godraw.GraphModel, stageDepths map[string]int) error {
 	keys := make([]string, 0, len(stageDepths))
 	for k := range stageDepths {
 		keys = append(keys, k)
@@ -100,33 +102,32 @@ func plotStages(graph *graphModel, stageDepths map[string]int) error {
 	for _, k := range keys {
 		stageOffsets[k] = offset + hSpacing/2 - 5
 		width := hSpacing * stageDepths[k]
-		shape := cell{
+		shape := godraw.Cell{
 			ID:       k,
 			Value:    k,
 			Style:    stageHeaderStyle(k),
 			ParentID: "layer1",
 			Vertex:   "1",
-			Geometry: &geometry{
-				X:      strconv.Itoa(offset),
-				Y:      "0",
+			Geometry: &godraw.Geometry{
+				X:      offset,
+				Y:      0,
 				Height: strconv.Itoa(vSpacing),
 				Width:  strconv.Itoa(width),
 				As:     "geometry",
 			},
 		}
-		graph.Root.Cells = append(graph.Root.Cells, shape)
-
+		graph.Add(&shape)
 		offset += width
 	}
 	return nil
 }
 
-func plotTree(graph *graphModel, root *node) error {
+func plotTree(graph *godraw.GraphModel, root *node) error {
 	addNodes(root, graph, hSpacing/2-5, vSpacing+5, "")
 	return nil
 }
 
-func addNodes(root *node, graph *graphModel, x, y int, parent string) (int, int) {
+func addNodes(root *node, graph *godraw.GraphModel, x, y int, parent string) (int, int) {
 	if root == nil {
 		return x, y
 	}
@@ -146,20 +147,20 @@ func addNodes(root *node, graph *graphModel, x, y int, parent string) (int, int)
 		x = stageOffsets[root.stage]
 	}
 
-	shape := cell{
+	shape := godraw.Cell{
 		ID:       root.id,
 		ParentID: "layer1",
 		Value:    value,
 		Style:    eventNodeStyle(root.stage),
 		Vertex:   "1",
-		Geometry: &geometry{
-			X:      strconv.Itoa(x),
-			Y:      strconv.Itoa(y),
+		Geometry: &godraw.Geometry{
+			X:      x,
+			Y:      y,
 			Width:  "10",
 			Height: "10",
 			As:     "geometry",
 		}}
-	graph.Root.Cells = append(graph.Root.Cells, shape)
+	graph.Add(&shape)
 
 	x += hSpacing
 
@@ -174,22 +175,22 @@ func addNodes(root *node, graph *graphModel, x, y int, parent string) (int, int)
 	return x, y
 }
 
-func addLink(graph *graphModel, sourceId, targetId string) {
+func addLink(graph *godraw.GraphModel, sourceId, targetId string) {
 	if sourceId == "" || targetId == "" {
 		return
 	}
 
-	link := cell{
+	link := godraw.Cell{
 		ID:       sourceId + "-" + targetId,
 		ParentID: "layer1",
 		Style:    linkStyle(),
 		Edge:     "1",
 		SourceID: sourceId,
 		TargetID: targetId,
-		Geometry: &geometry{
+		Geometry: &godraw.Geometry{
 			Relative: "1",
 			As:       "geometry",
 		},
 	}
-	graph.Root.Cells = append(graph.Root.Cells, link)
+	graph.Add(&link)
 }
