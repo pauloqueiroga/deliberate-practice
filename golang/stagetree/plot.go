@@ -41,6 +41,7 @@ func eventNodeStyle(stage string) style {
 			"verticalLabelPosition": "bottom",
 			"align":                 "center",
 			"verticalAlign":         "top",
+			"fontColor":             "#000000",
 		},
 	}
 
@@ -72,6 +73,7 @@ func stageHeaderStyle(stage string) style {
 		Attributes: map[string]string{
 			"html":       "1",
 			"whiteSpace": "wrap",
+			"fontColor":  "#ffffff",
 		},
 	}
 
