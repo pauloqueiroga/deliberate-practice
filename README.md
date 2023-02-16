@@ -6,6 +6,6 @@ This repository was created to host random notes, sketches, proofs-of-concepts a
 
 For example:
 
-* [2021 Interview stage-tree diagram](docs/interview-stages-2021.svg) created using [stage-tree](https://github.com/pauloqueiroga/stage-tree) and [godraw](https://github.com/pauloqueiroga/go-draw)
+* [2021 Interview stage-tree diagram](/docs/interview-stages-2021.svg) created using [stage-tree](https://github.com/pauloqueiroga/stage-tree) and [godraw](https://github.com/pauloqueiroga/go-draw)
 
-* [2023 Interview stage-tree diagram](docs/interview-stages-2023.svg) created using [stage-tree](https://github.com/pauloqueiroga/stage-tree) and [godraw](https://github.com/pauloqueiroga/go-draw)
+* [2023 Interview stage-tree diagram](/docs/interview-stages-2023.svg) created using [stage-tree](https://github.com/pauloqueiroga/stage-tree) and [godraw](https://github.com/pauloqueiroga/godraw)
