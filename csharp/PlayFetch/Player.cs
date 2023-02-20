@@ -8,7 +8,7 @@ namespace pauloq.sports.playfetch
         public required string LastName { get; init; }
         public required string Position { get; init; }
         public required int Age { get; init; }
-        public DateTime? ImportTime { get; set; }
+        public string? ImportBatch { get; set; }
         public string? FullSource { get; set; }
         public string? ImportUrl { get; set; }
     }
