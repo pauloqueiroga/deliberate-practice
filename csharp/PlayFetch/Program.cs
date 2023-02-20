@@ -2,8 +2,8 @@
 
 // default values for optional command-line arguments
 var sport = BaseballPlayer.SportName;
-var baseUrl = "http://api.cbssports.com/fantasy/players/list?version=3.0&response_format=JSON&SPORT=";
-var scheme = CBSSports3.SchemeName;
+var baseUrl = CBSSports3FantasyClient.DefaultUrl;
+var scheme = CBSSports3FantasyClient.SchemeName;
 
 // first argument after executable name should be the sport
 if (args.Length >= 2)
@@ -25,19 +25,20 @@ if (args.Length >= 4)
 
 try
 {
-    IFantasyClient importer;
+    IFantasyClient client;
 
+    // "Factory" code to build the right client for service we'll be connecting to 
     switch (scheme) 
     {
-        case CBSSports3.SchemeName:
-            importer = new CBSSports3(baseUrl);
+        case CBSSports3FantasyClient.SchemeName:
+            client = new CBSSports3FantasyClient(baseUrl);
             break;
         default:
             throw new ArgumentException($"Scheme unknown: {scheme}");
     }
 
-    var fetcher = new Fetcher(importer);
-    fetcher.Run(sport);
+    var fetcher = new Fetcher(client);
+    fetcher.Run(sport).Wait();
 }
 catch (System.Exception e)
 {
