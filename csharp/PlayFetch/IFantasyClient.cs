@@ -10,6 +10,6 @@ namespace pauloq.sports.playfetch
         /// </summary>
         /// <param name="sport">A string representing the sport (e.g. "baseball")</param>
         /// <returns>Set of Players retrieved from the service.</returns>
-        Task<IEnumerable<Player>> GetPlayersAsync(string sport);
+        Task<IEnumerable<Player>> GetPlayersAsync<T>(string sport) where T : Player;
     }
 }

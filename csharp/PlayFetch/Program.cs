@@ -38,7 +38,22 @@ try
     }
 
     var fetcher = new Fetcher(client);
-    fetcher.Run(sport).Wait();
+
+    switch (sport)
+    {
+        case BaseballPlayer.SportName:
+            fetcher.Run<BaseballPlayer>(sport).Wait();
+            break;
+        case BasketballPlayer.SportName:
+            fetcher.Run<BasketballPlayer>(sport).Wait();
+            break;
+        case FootballPlayer.SportName:
+            fetcher.Run<FootballPlayer>(sport).Wait();
+            break;
+        default:
+            throw new ArgumentException($"Sport unknown: {sport}");
+    }
+
 }
 catch (System.Exception e)
 {

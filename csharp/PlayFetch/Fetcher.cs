@@ -20,15 +20,10 @@ namespace pauloq.sports.playfetch
         /// <summary>
         /// Executes a full fetch for the given sport.
         /// </summary>
-        /// <param name="sport">String representing the sport, e.g. "football".</param>
-        public async Task Run(string sport)
+        /// <param name="playerType">Type of player to be fetched and converted (e.g.: FootballPlayer).</param>
+        public async Task Run<T>(string sport) where T : Player
         {
-            if (string.IsNullOrWhiteSpace(sport))
-            {
-                throw new ArgumentException($"'{nameof(sport)}' cannot be null or whitespace.", nameof(sport));
-            }
-
-            var players = _fantasyClient.GetPlayersAsync(sport);
+            var players = _fantasyClient.GetPlayersAsync<T>(sport);
             _playerRepo.Update(await players);
         }
     }
