@@ -6,21 +6,21 @@ var baseUrl = CBSSports3FantasyClient.DefaultUrl;
 var scheme = CBSSports3FantasyClient.SchemeName;
 
 // first argument after executable name should be the sport
-if (args.Length >= 2)
+if (args.Length >= 1)
 {
-    sport = args[1];
+    sport = args[0];
 }
 
 // second argument after executable name should be the base URL
-if (args.Length >= 3)
+if (args.Length >= 2)
 {
-    baseUrl = args[2];
+    baseUrl = args[1];
 }
 
 // third argument after executable name should be the scheme name
-if (args.Length >= 4)
+if (args.Length >= 3)
 {
-    scheme = args[3];
+    scheme = args[2];
 }
 
 try
