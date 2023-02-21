@@ -18,6 +18,11 @@ namespace pauloq.sports.playfetch
         Player? GetById(int id);
 
         /// <summary>
+        /// Retrieves all players in the repository.
+        /// </summary>
+        IEnumerable<Player> GetAll();
+
+        /// <summary>
         /// Inserts or updates repository with the given collection of players.
         /// </summary>
         /// <param name="players">Collection of players to be imported.</param>

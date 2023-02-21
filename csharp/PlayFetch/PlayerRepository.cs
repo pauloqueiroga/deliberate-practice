@@ -103,5 +103,10 @@ namespace pauloq.sports.playfetch
 
             return result;
         }
+
+        public IEnumerable<Player> GetAll()
+        {
+            return records.Values;
+        }
     }
 }
