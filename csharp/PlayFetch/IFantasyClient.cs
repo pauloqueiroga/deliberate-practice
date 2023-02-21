@@ -6,7 +6,7 @@ namespace pauloq.sports.playfetch
     internal interface IFantasyClient
     {
         /// <summary>
-        /// Gets data from the service and translates them to Players.
+        /// Asynchronously retrieves players from the service and convert to our abstraction of players.
         /// </summary>
         /// <param name="sport">A string representing the sport (e.g. "baseball")</param>
         /// <returns>Set of Players retrieved from the service.</returns>

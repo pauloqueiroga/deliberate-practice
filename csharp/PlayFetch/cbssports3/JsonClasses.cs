@@ -1,3 +1,7 @@
+// Classes generated based on the JSON structure returned by the service.
+// Only the types and fields that matter to us are included here. 
+// As implementation changes, if we need more fields that already exist in the current model, we can add them.
+
 namespace pauloq.sports.playfetch.cbssports3 
 {
     public record class Body

@@ -1,17 +1,5 @@
 namespace pauloq.sports.playfetch
 {
-    internal interface IFetcher
-    {
-        public IFantasyClient Client { get; }
-        public IPlayerRepository Repository { get; }
-        public string Sport { get; }
-    
-        /// <summary>
-        /// Executes a full fetch from the service and saves to the repository.
-        /// </summary>
-        public Task Run();
-    }
-
     /// <summary>
     /// Fetcher retrieves players' data from a service and saves in the underlying repository.
     /// </summary>
@@ -40,7 +28,7 @@ namespace pauloq.sports.playfetch
         async Task IFetcher.Run()
         {
             var players = Client.GetPlayersAsync<T>(Sport);
-            Repository.Update(await players);
+            Repository.InsertOrUpdate(await players);
         }
     }
 }

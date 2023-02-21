@@ -28,7 +28,7 @@ namespace pauloq.sports.playfetch
         }
 
         /// <summary>
-        /// Asynchronously converts players retrieved from the service to our abstraction of players.
+        /// Get players from CBS Sports Fantasy service.
         /// </summary>
         /// <returns>Collection of Players</returns>
         async Task<IEnumerable<Player>> IFantasyClient.GetPlayersAsync<T>(string sport)
@@ -69,4 +69,3 @@ namespace pauloq.sports.playfetch
         }
     }
 }
-

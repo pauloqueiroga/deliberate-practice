@@ -37,7 +37,10 @@ try
             throw new ArgumentException($"Scheme unknown: {scheme}");
     }
 
-    var repo = new InMemoryRepository(sport);
+    // Using In-Memory implementation for now, can easily be replaced by anything else
+    IPlayerRepository repo = new InMemoryRepository(sport);
+
+    // We'd create one fetcher for each combination of client, repository and sport
     IFetcher fetcher;
 
     switch (sport)
@@ -55,8 +58,8 @@ try
             throw new ArgumentException($"Sport unknown: {sport}");
     }
 
+    // Finally runs the fetch and conversion, waits for all to finish
     fetcher.Run().Wait();
-
 }
 catch (System.Exception e)
 {
