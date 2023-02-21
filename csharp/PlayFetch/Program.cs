@@ -37,22 +37,25 @@ try
             throw new ArgumentException($"Scheme unknown: {scheme}");
     }
 
-    var fetcher = new Fetcher(client);
+    var repo = new InMemoryRepository(sport);
+    IFetcher fetcher;
 
     switch (sport)
     {
         case BaseballPlayer.SportName:
-            fetcher.Run<BaseballPlayer>(sport).Wait();
+            fetcher = new Fetcher<BaseballPlayer>(client, repo, sport);
             break;
         case BasketballPlayer.SportName:
-            fetcher.Run<BasketballPlayer>(sport).Wait();
+            fetcher = new Fetcher<BasketballPlayer>(client, repo, sport);
             break;
         case FootballPlayer.SportName:
-            fetcher.Run<FootballPlayer>(sport).Wait();
+            fetcher = new Fetcher<FootballPlayer>(client, repo, sport);
             break;
         default:
             throw new ArgumentException($"Sport unknown: {sport}");
     }
+
+    fetcher.Run().Wait();
 
 }
 catch (System.Exception e)
