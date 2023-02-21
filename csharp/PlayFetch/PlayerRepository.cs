@@ -14,6 +14,8 @@ namespace pauloq.sports.playfetch
 
         private readonly ConcurrentDictionary<int, Player> records = new ConcurrentDictionary<int, Player>();
         private readonly ConcurrentDictionary<string, int> fullNameIndex = new ConcurrentDictionary<string, int>();
+        private readonly ConcurrentDictionary<string, int> positionAgeSum = new ConcurrentDictionary<string, int>();
+        private readonly ConcurrentDictionary<string, int> positionCount = new ConcurrentDictionary<string, int>();
 
         /// <summary>
         /// Creates an instance of InMemoryRepository with the given name.
@@ -36,13 +38,46 @@ namespace pauloq.sports.playfetch
             {
                 var fullName = $"{player.FirstName} {player.LastName}";
                 
+                // If the player is new, update indices and metadata
                 if (!fullNameIndex.ContainsKey(fullName)) {
-                    fullNameIndex[fullName] = NewId();
+                    player.ID = NewId();
+                    fullNameIndex[fullName] = player.ID.Value;
+                    UpdateAgeMetadata(player.Position, player.Age);
                 }
                 
                 // Assuming that Dictionary retrieval is extremely efficient, we can retrieve the newly created index entry.
                 records[fullNameIndex[fullName]] = player;
             }
+        }
+
+        private void UpdateAgeMetadata(string? position, int? age)
+        {
+            if (position == null)
+            {
+                return;
+            }
+
+            if (age == null || age == 0)
+            {
+                return;
+            }
+
+            var pos = position;
+            var sum = 0;
+            var count = 0;
+
+            if (positionAgeSum.ContainsKey(pos))
+            {
+                sum = positionAgeSum[pos];
+            }
+
+            if (positionCount.ContainsKey(pos))
+            {
+                count = positionCount[pos];
+            }
+
+            positionAgeSum[pos] = sum + age ?? 0;
+            positionCount[pos] = count + 1;
         }
 
         private int NewId() {
@@ -52,6 +87,21 @@ namespace pauloq.sports.playfetch
                 Console.WriteLine($"New record ID: {id}");
                 return id;
             }
+        }
+
+        public Player? GetById(int id)
+        {
+            Player? result = null;
+
+            if (records.ContainsKey(id))
+            {
+                result = records[id];
+                var pos = result.Position ?? "unknown";
+                var averageAge = positionAgeSum[pos] / positionCount[pos];
+                result.AveragePositionAgeDifference = result.Age - averageAge;
+            }
+
+            return result;
         }
     }
 }

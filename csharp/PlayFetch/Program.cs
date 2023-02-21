@@ -58,8 +58,28 @@ try
             throw new ArgumentException($"Sport unknown: {sport}");
     }
 
-    // Finally runs the fetch and conversion, waits for all to finish
-    fetcher.Run().Wait();
+    // Finally runs the fetch and conversion
+    var fetching = fetcher.Run();
+
+    var builder = WebApplication.CreateBuilder();
+    var server = builder.Build();
+    
+    server.MapGet("/players/{id}", (int id) => 
+    {
+        var player = repo.GetById(id);
+        
+        if (player is null)
+        {
+            return Results.NotFound();
+        }
+
+        return Results.Ok(player);
+    });
+
+    server.Run();
+
+    // If we want to wait for the fetching to be done
+    fetching.Wait();
 }
 catch (System.Exception e)
 {

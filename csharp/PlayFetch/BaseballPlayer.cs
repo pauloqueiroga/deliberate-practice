@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace pauloq.sports.playfetch
 {
     /// <summary>
@@ -14,5 +16,11 @@ namespace pauloq.sports.playfetch
         /// This is a Baseball player.
         /// </summary>
         public override string Sport => SportName;
+
+        /// <summary>
+        /// For baseball players it should just be the first initial and the last initial like “G. S.”
+        /// </summary>
+        [JsonPropertyName("name_brief")]
+        public override string NameBrief => $"{FirstName.Substring(0,1)}. {LastName.Substring(0,1)}.";
     }
 }
