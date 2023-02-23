@@ -21,6 +21,19 @@ namespace pauloq.sports.playfetch
         /// For basketball players it should be first name plus last initial like "Kobe B."
         /// </summary>
         [JsonPropertyName("name_brief")]
-        public override string NameBrief => $"{FirstName} {LastName.Substring(0,1)}.";
+        public override string NameBrief 
+        {
+            get 
+            {
+                var brief = FirstName ?? string.Empty;
+
+                if (!string.IsNullOrEmpty(LastName))
+                {
+                    brief += $" {LastName.Substring(0,1)}.";
+                }
+
+                return brief;
+            }
+        }
     }
 }
