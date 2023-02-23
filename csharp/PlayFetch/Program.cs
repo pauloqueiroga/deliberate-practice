@@ -70,58 +70,58 @@
             {
                 Console.WriteLine(e.Message);
             }
+        }
 
-            IEnumerable<Player> SearchPlayers(string sport = "all",
-                                              string lastInitial = "",
-                                              int age = 0,
-                                              int minAge = 0,
-                                              int maxAge = 999,
-                                              string position = "any")
+        static IEnumerable<Player> SearchPlayers(string sport = "all",
+                                                 string lastInitial = "",
+                                                 int age = 0,
+                                                 int minAge = 0,
+                                                 int maxAge = 999,
+                                                 string position = "any")
+        {
+            IEnumerable<Player> results = Enumerable.Empty<Player>();
+
+            if (sport == BaseballPlayer.SportName || sport == "all")
             {
-                var results = new List<Player>();
-
-                if (sport == BaseballPlayer.SportName || sport == "all")
-                {
-                    results.AddRange(repos[BaseballPlayer.SportName].GetAll());
-                }
-
-                if (sport == BasketballPlayer.SportName || sport == "all")
-                {
-                    results.AddRange(repos[BasketballPlayer.SportName].GetAll());
-                }
-
-                if (sport == FootballPlayer.SportName || sport == "all")
-                {
-                    results.AddRange(repos[FootballPlayer.SportName].GetAll());
-                }
-
-                if (lastInitial != string.Empty)
-                {
-                    results = results.Where(x => x.LastName.StartsWith(lastInitial)).ToList();
-                }
-
-                if (age != 0)
-                {
-                    results = results.Where(x => x.Age == age).ToList();
-                }
-
-                if (minAge != 0)
-                {
-                    results = results.Where(x => x.Age >= minAge).ToList();
-                }
-
-                if (maxAge != 999)
-                {
-                    results = results.Where(x => x.Age <= maxAge).ToList();
-                }
-
-                if (position != "any")
-                {
-                    results = results.Where(x => x.Position == position).ToList();
-                }
-
-                return results;
+                results = results.Concat(repos[BaseballPlayer.SportName].GetAll());
             }
+
+            if (sport == BasketballPlayer.SportName || sport == "all")
+            {
+                results = results.Concat(repos[BasketballPlayer.SportName].GetAll());
+            }
+
+            if (sport == FootballPlayer.SportName || sport == "all")
+            {
+                results = results.Concat(repos[FootballPlayer.SportName].GetAll());
+            }
+
+            if (lastInitial != string.Empty)
+            {
+                results = results.Where(x => x.LastName.StartsWith(lastInitial)).AsEnumerable<Player>();
+            }
+
+            if (age != 0)
+            {
+                results = results.Where(x => x.Age == age);
+            }
+
+            if (minAge != 0)
+            {
+                results = results.Where(x => x.Age >= minAge);
+            }
+
+            if (maxAge != 999)
+            {
+                results = results.Where(x => x.Age <= maxAge);
+            }
+
+            if (position != "any")
+            {
+                results = results.Where(x => x.Position == position);
+            }
+
+            return results;
         }
     }
 }
