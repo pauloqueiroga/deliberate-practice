@@ -96,9 +96,7 @@ namespace pauloq.sports.playfetch
             if (records.ContainsKey(id))
             {
                 result = records[id];
-                var pos = result.Position ?? "unknown";
-                var averageAge = positionAgeSum[pos] / positionCount[pos];
-                result.AveragePositionAgeDifference = result.Age - averageAge;
+                UpdateAgeDifference(result);
             }
 
             return result;
@@ -106,7 +104,21 @@ namespace pauloq.sports.playfetch
 
         public IEnumerable<Player> GetAll()
         {
-            return records.Values;
+            return records.Values.Select(UpdateAgeDifference);
+        }
+
+        private Player UpdateAgeDifference(Player player) 
+        {
+            var pos = player.Position ?? "unknown";
+            
+            if (!positionAgeSum.ContainsKey(pos) || !positionCount.ContainsKey(pos) || positionCount[pos] == 0)
+            {
+                return player;
+            }
+
+            var averageAge = positionAgeSum[pos] / positionCount[pos];
+            player.AveragePositionAgeDifference = player.Age - averageAge;
+            return player;
         }
     }
 }
