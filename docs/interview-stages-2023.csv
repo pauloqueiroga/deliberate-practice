@@ -53,7 +53,7 @@ keystone,Outplacement,0,,,1 networks,
 47,Company 24,linkedin,,,2 recruiter search,
 48,Company 24,47,,,3 recruiter screening,declined
 49,Company 25,linkedin,,,2 recruiter search,
-50,Company 25,49,,,3 recruiter screening,
+50,Company 25,49,,,3 recruiter screening,declined
 51,Company 11,26,,,5 phone interview,
 52,Company 11,51,,,5 phone interview,
 53,Company 1,27,,,5 phone interview,
@@ -86,3 +86,4 @@ keystone,Outplacement,0,,,1 networks,
 80,Company 26,79,,,5 phone interview,
 81,Company 26,80,,,5 phone interview,
 82,Company 28,78,,,4 job application,rejected
+83,Company 10,69,70,71,5 phone interview,rejected
