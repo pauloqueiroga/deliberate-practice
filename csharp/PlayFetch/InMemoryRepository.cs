@@ -11,7 +11,9 @@ namespace pauloq.sports.playfetch
         /// Name of this repository.
         /// </summary>
         public string Name { get; }
-
+        
+        private int topId = 0;
+        private object idLock = new object();
         private readonly ConcurrentDictionary<int, Player> records = new ConcurrentDictionary<int, Player>();
         private readonly ConcurrentDictionary<string, int> fullNameIndex = new ConcurrentDictionary<string, int>();
         private readonly ConcurrentDictionary<string, int> positionAgeSum = new ConcurrentDictionary<string, int>();
@@ -81,9 +83,9 @@ namespace pauloq.sports.playfetch
         }
 
         private int NewId() {
-            lock(fullNameIndex)
+            lock(idLock)
             {
-                var id = fullNameIndex.Count + 1;
+                var id = ++topId;
                 Console.WriteLine($"New record ID: {id}");
                 return id;
             }
