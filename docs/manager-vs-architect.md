@@ -10,7 +10,7 @@ This question is not about which one is better, or which one to get rid of. It's
 
 ## How do you feel about recruiting and interviewing?
 
-TBD
+This is a very important aspect of being a manager. The interview part of recruiting is also a very important aspect of being an architect, but the manager is expected to invest more time and energy in the process, scouring for the best candidates, and making sure the team is well balanced.
 
 ## Are deadlines important? How so?
 
@@ -19,3 +19,15 @@ TBD - Predictability, consistency and measurability. Output and productivity. Re
 ## If the product owner or manager or project manager wants someone or everyone to immediately drop everything and work on a new feature, what do YOU do?
 
 TBD
+
+## How do you feel about coaching others into becoming leaders?
+
+A very important aspect of being a good manager or leader is the ability to delegate, inspire and coach your team members into becoming exceptional leaders themselves. I recommend anyone to always consider this aspect of the work, and start thinking about it frequently if they have never. This might be more obvious in organizations experiencing quick growth, but it is absolutely not restricted to those situations. The desire for self development and career advancement is an ubiquitous trait among engineering professionals, and both tracks require leadership skills.
+
+## "What would you do if you had another pair of hands?" - Nick Caldwell
+
+TBD
+
+## Leaders take responsibility of what happens next
+
+TBD - Take initiative, try it, change your mind, change someone else's mind, etc.
