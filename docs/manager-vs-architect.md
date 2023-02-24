@@ -14,9 +14,13 @@ This is a very important aspect of being a manager. The interview part of recrui
 
 ## Are deadlines important? How so?
 
-TBD - Predictability, consistency and measurability. Output and productivity. Refactoring and redesigning, changing minds, making it better. Just-in-time discoveries.
+Slightly experienced managers and architects will likely agree at some level that deadlines are important, or at least that they are mostly unavoidable. But for a professional who is looking to understand in which direction they want to progress, such question will likely trigger the thinking process that could lead to a more profound understanding of their own preferences.
+
+Typically a manager will be more concerned with predictability and consistency of the team's output, regarding its quality, timeliness and compliance with the business needs. An architect may be more inclined to dig deeper into a problem or solution, and could favor more completeness and comprehensiveness over predictability and consistency.
 
 ## If the product owner or manager or project manager wants someone or everyone to immediately drop everything and work on a new feature, what do YOU do?
+
+It is very common to hear about product managers who reach out directly to individual team members and ask them to immediately work on "something else".
 
 TBD
 
