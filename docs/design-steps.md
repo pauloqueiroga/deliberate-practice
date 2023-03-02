@@ -1,6 +1,6 @@
 # Design Steps
 
-This general recommendation for a sequence of initial steps is arranged in such order so it makes builds up on information acquired on previous steps and each step forward makes it for easier execution of subsequent steps. It should be obvious that this is not a serialized, or waterfall-style approach. While designing a system, you are constantly and consistently detailing and enriching all aspects of the design.
+This general recommendation for a sequence of initial steps is arranged in such order so it builds up on information acquired on previous steps and each step forward makes it for easier execution of subsequent steps. It should be obvious that this is not a serialized, or waterfall-style approach. While designing a system, you are constantly and consistently detailing and enriching all aspects of the design.
 
 ## 1. Requirements, clarifications, understanding the problem
 
