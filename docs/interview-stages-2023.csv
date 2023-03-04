@@ -86,13 +86,15 @@ keystone,Outplacement,0,,,1 networks,
 84,Company 30,0,,,4 job application,
 85,Company 31,0,,,4 job application,
 86,Company 01,53,,,6 negotiation,rejected
-87,Company 32,0,,,4 job application,
+87,Company 32,0,,,4 job application,rejected
 88,Company 02,77,,,4 job application,
 89,Company 33,friends,,,1 networks,
 90,Company 34,friends,,,1 networks,
 91,Company 11,76,,,5 phone interview,
 92,Company 35,linkedin,,,2 recruiter search,
-93,Company 35,92,,,3 recruiter screening,
+93,Company 35,92,,,3 recruiter screening,declined
 94,Company 36,linkedin,,,4 job application,
 95,Company 37,linkedin,,,2 recruiter search,
 96,Company 37,95,,,3 recruiter screening,
+97,Company 21,43,,,3 recruiter screening,
+98,Company 21,97,,,5 phone interview,
