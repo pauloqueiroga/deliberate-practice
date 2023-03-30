@@ -98,7 +98,7 @@ keystone,Outplacement,0,,,1 networks,
 96,Company 37,95,,,3 recruiter screening,
 97,Company 21,43,,,3 recruiter screening,
 98,Company 21,97,101,,5 phone interview,
-99,Company 38,linkedin,,,4 job application,rejected
+99,Company 42,linkedin,,,4 job application,rejected
 100,Company 02,88,,,4 job application,
 101,Company 21,97,,,3 recruiter screening,
 102,Company 02,100,,,4 job application,
@@ -129,8 +129,8 @@ keystone,Outplacement,0,,,1 networks,
 127,Company 11,126,,,6 negotiation,
 128,Company 02,102,,,4 job application,
 129,Company 39,121,,,4 job application,
-130,Company 39,129,,,5 phone interview,
-131,Company 37,96,,,5 phone interview,
+130,Company 39,129,,,5 phone interview,declined
+131,Company 37,96,,,5 phone interview,declined
 132,Company 40,122,,,5 phone interview,
 133,Company 40,122,,,5 phone interview,
 134,Company 40,132,133,,5 phone interview,
@@ -141,3 +141,7 @@ keystone,Outplacement,0,,,1 networks,
 139,Company 02,138,,,5 phone interview,
 140,Company 02,139,,,5 phone interview,
 141,Company 02,128,,,4 job application,
+142,Company 02,140,141,,6 negotiation,declined
+143,Company 40,134,135,,5 phone interview,declined
+144,Company 11,127,,,6 negotiation,accepted
+145,Company 30,120,,,3 recruiter screening,declined
