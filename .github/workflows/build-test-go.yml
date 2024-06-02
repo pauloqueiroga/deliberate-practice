@@ -11,6 +11,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    environment: golang-setsgame
     steps:
     - uses: actions/checkout@v2
       with:
@@ -30,7 +31,7 @@ jobs:
       run: go test -v ./... -coverprofile=coverage.out -json > test-report.out
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: sonarsource/sonarcloud-github-action@master
       with: 
         projectBaseDir: ./golang/setsgame
       env:
