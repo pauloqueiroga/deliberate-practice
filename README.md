@@ -25,3 +25,5 @@ For example:
 * [Metrics](/docs/metrics.md)
 
 * [SOLID Principles](/docs/solid-principles.md)
+
+* [Sprint Review Cheat Sheet](/docs/sprint-review-cheat-sheet.md)
