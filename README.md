@@ -16,6 +16,8 @@ For example:
 
 * [Good Judgment Exercise](/docs/good-judgment-exercise.md)
 
+* [Hands-on Ramp-Up and Onboarding](/docs/ramp-up-hands-on-work.md)
+
 * [Innovation Exercise](/docs/innovation-exercise.md)
 
 * [Leadership Principles](/docs/leadership-principles.md)
